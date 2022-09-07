@@ -14,45 +14,48 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final name = TextEditingController();
-  final email = TextEditingController();
-  final phone = TextEditingController();
-  final address = TextEditingController();
-  final password = TextEditingController();
+  List hints = <String>['Name', 'Email', 'Phone', 'Address', 'Password'];
+  final List<TextEditingController> _controllers = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background_color,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Image.asset(
-                  'images/logo.png',
-                  width: 126,
-                  height: 126,
-                ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Image.asset(
+                'images/logo.png',
+                width: 126,
+                height: 126,
               ),
-              MyHeadingText(text: 'Create your account'),
-              MyTextField(myController: name, hint: 'Name'),
-              MyTextField(myController: email, hint: 'Email'),
-              MyTextField(myController: phone, hint: 'Phone'),
-              MyTextField(myController: address, hint: 'Address'),
-              MyTextField(myController: password, hint: 'Password'),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: MyButton(text: 'Sign Up', page: MyHomePage()),
+            ),
+            const MyHeadingText(text: 'Create your account'),
+            Flexible(
+              child: ListView.builder(
+                itemCount: hints.length,
+                itemBuilder: ((context, index) {
+                  _controllers.add(TextEditingController());
+                  return MyTextField(
+                      myController: _controllers[index], hint: hints[index]);
+                }),
               ),
-              const MyTextButton(
-                text: "Already have account? Sign In",
-                page: LoginPage(),
-              ),
-            ]),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: MyButton(text: 'Sign Up', page: MyHomePage()),
+            ),
+            const MyTextButton(
+              text: "Already have account? Sign In",
+              page: LoginPage(),
+            ),
+          ],
+        ),
       ),
     );
   }

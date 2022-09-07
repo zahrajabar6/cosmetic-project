@@ -26,21 +26,23 @@ class MyTextField extends StatelessWidget {
             print(x);
           },
           autofocus: false,
-          style: TextStyle(
-              fontSize: 20,
-              color: grey.withOpacity(0.30),
-              fontWeight: FontWeight.normal),
+          style:
+              TextStyle(fontSize: 20, color: grey, fontWeight: FontWeight.w300),
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
             hintText: hint,
+            hintStyle: TextStyle(
+                fontSize: 20,
+                color: grey.withOpacity(0.60),
+                fontWeight: FontWeight.normal),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(width: 1, color: grey.withOpacity(0.20)),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(width: 2, color: grey.withOpacity(0.50)),
+              borderSide: BorderSide(width: 2, color: green.withOpacity(0.60)),
             ),
             //suffixIcon: TextButton(
             //  child: Obx(() {
