@@ -16,7 +16,7 @@ class MyButton extends StatelessWidget {
           Get.to(page);
         },
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           height: 47,
           width: double.maxFinite,
           decoration: BoxDecoration(

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Pure Beauty',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Lato'),
-      home: MyLogoPage(),
+      home: const MyLogoPage(),
     );
   }
 }

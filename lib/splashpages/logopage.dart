@@ -21,27 +21,36 @@ class _MyLogoPageState extends State<MyLogoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background_color,
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: Image.asset(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
                 'images/logo.png',
                 width: 240,
                 height: 240,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                'Pure Beauty',
-                style: TextStyle(color: grey, fontSize: 60, fontFamily: 'Ole'),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 20),
+                child: Text(
+                  'Pure Beauty',
+                  style:
+                      TextStyle(color: grey, fontSize: 60, fontFamily: 'Ole'),
+                ),
               ),
-            )
-          ],
+              SizedBox(
+                width: 30,
+                height: 30,
+                child: CircularProgressIndicator(
+                  color: green,
+                  strokeWidth: 2,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
