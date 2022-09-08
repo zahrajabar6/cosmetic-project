@@ -1,9 +1,10 @@
-import 'package:cosmetic_project/Home/home.dart';
+import 'package:cosmetic_project/Home/home_page.dart';
 import 'package:cosmetic_project/colors.dart';
 import 'package:cosmetic_project/login_Signup_pages/login_page.dart';
+import 'package:cosmetic_project/login_Signup_pages/my_text_field.dart';
+import 'package:cosmetic_project/main_page.dart';
 import 'package:cosmetic_project/my_text.dart';
 import 'package:cosmetic_project/my_button.dart';
-import 'package:cosmetic_project/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -14,47 +15,47 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  List hints = <String>['Name', 'Email', 'Phone', 'Address', 'Password'];
-  final List<TextEditingController> _controllers = [];
+  final name = TextEditingController();
+  final email = TextEditingController();
+  final phone = TextEditingController();
+  final address = TextEditingController();
+  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: background_color,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Image.asset(
-                'images/logo.png',
-                width: 126,
-                height: 126,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: background_color,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'images/logo.png',
+                  width: 126,
+                  height: 126,
+                ),
               ),
-            ),
-            const MyHeadingText(text: 'Create your account'),
-            Flexible(
-              child: ListView.builder(
-                itemCount: hints.length,
-                itemBuilder: ((context, index) {
-                  _controllers.add(TextEditingController());
-                  return MyTextField(
-                      myController: _controllers[index], hint: hints[index]);
-                }),
+              const MyHeadingText(text: 'Create your account'),
+              MyTextField(hint: 'Name', myController: name),
+              MyTextField(hint: 'Email', myController: email),
+              MyTextField(hint: 'Phone', myController: phone),
+              MyTextField(hint: 'Address', myController: address),
+              MyTextField(hint: 'Password', myController: password),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: MyButton(text: 'Sign Up', page: MyPages()),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: MyButton(text: 'Sign Up', page: MyHomePage()),
-            ),
-            const MyTextButton(
-              text: "Already have account? Sign In",
-              page: LoginPage(),
-            ),
-          ],
+              const MyTextButton(
+                text: "Already have account? Sign In",
+                page: LoginPage(),
+              ),
+            ],
+          ),
         ),
       ),
     );
