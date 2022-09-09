@@ -1,5 +1,5 @@
-import 'package:cosmetic_project/colors.dart';
-import 'package:cosmetic_project/splashpages/delay.dart';
+import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/view/splashpages/delay.dart';
 import 'package:flutter/material.dart';
 
 class MyLogoPage extends StatefulWidget {
@@ -12,7 +12,8 @@ class MyLogoPage extends StatefulWidget {
 class _MyLogoPageState extends State<MyLogoPage> {
   @override
   void initState() {
-    // TODO: implement initState
+    // ignore: todo
+    //TODO: implement initState
     super.initState();
     startTime();
   }

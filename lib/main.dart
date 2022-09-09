@@ -1,6 +1,4 @@
-import 'package:cosmetic_project/colors.dart';
-import 'package:cosmetic_project/splashpages/logopage.dart';
-import 'package:cosmetic_project/splashpages/welcome_one.dart';
+import 'package:cosmetic_project/view/splashpages/logopage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

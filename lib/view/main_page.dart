@@ -1,10 +1,10 @@
-import 'package:cosmetic_project/Cart/cart_page.dart';
-import 'package:cosmetic_project/Favorite/favorite_page.dart';
-import 'package:cosmetic_project/Home/home_page.dart';
-import 'package:cosmetic_project/Profile/profile_page.dart';
-import 'package:cosmetic_project/Search/search_page.dart';
-import 'package:cosmetic_project/colors.dart';
-import 'package:cosmetic_project/my_icons.dart';
+import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/my_icons.dart';
+import 'package:cosmetic_project/view/cart_page.dart';
+import 'package:cosmetic_project/view/favorite_page.dart';
+import 'package:cosmetic_project/view/Home/home_page.dart';
+import 'package:cosmetic_project/view/profile_page.dart';
+import 'package:cosmetic_project/view/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,6 @@ class _MyPagesState extends State<MyPages> {
     const MyCartPage(),
     const MyProfilePage()
   ];
-  @override
   final items = <Widget>[
     const MyIcons(icon: Icons.home),
     const MyIcons(icon: Icons.favorite),
@@ -32,6 +31,7 @@ class _MyPagesState extends State<MyPages> {
     const MyIcons(icon: Icons.shopping_cart),
     const MyIcons(icon: Icons.person)
   ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,

@@ -1,5 +1,7 @@
-import 'package:cosmetic_project/colors.dart';
-import 'package:cosmetic_project/login_Signup_pages/my_text_field.dart';
+import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/my_filtering_icon.dart';
+import 'package:cosmetic_project/controllers/my_search_field.dart';
+import 'package:cosmetic_project/view/Home/slider_tap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,15 +26,20 @@ class MyHomePage extends StatelessWidget {
           automaticallyImplyLeading: false,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
-              Container(
-                width: double.maxFinite,
-                height: 200,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10), color: grey),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Expanded(flex: 4, child: MySearchField()),
+                    Expanded(flex: 1, child: FilteringButton())
+                  ],
+                ),
               ),
+              const SliderTap(),
             ],
           ),
         ),

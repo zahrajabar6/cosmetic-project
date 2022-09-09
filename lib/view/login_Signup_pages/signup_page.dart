@@ -1,10 +1,8 @@
-import 'package:cosmetic_project/Home/home_page.dart';
-import 'package:cosmetic_project/colors.dart';
-import 'package:cosmetic_project/login_Signup_pages/login_page.dart';
-import 'package:cosmetic_project/login_Signup_pages/my_text_field.dart';
-import 'package:cosmetic_project/main_page.dart';
-import 'package:cosmetic_project/my_text.dart';
-import 'package:cosmetic_project/my_button.dart';
+import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
+import 'package:cosmetic_project/view/main_page.dart';
+import 'package:cosmetic_project/controllers/my_text.dart';
+import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -41,11 +39,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               const MyHeadingText(text: 'Create your account'),
-              MyTextField(hint: 'Name', myController: name),
-              MyTextField(hint: 'Email', myController: email),
-              MyTextField(hint: 'Phone', myController: phone),
-              MyTextField(hint: 'Address', myController: address),
-              MyTextField(hint: 'Password', myController: password),
+              //MyTextField(hint: 'Name', myController: name),
+              //MyTextField(hint: 'Email', myController: email),
+              //MyTextField(hint: 'Phone', myController: phone),
+              //MyTextField(hint: 'Address', myController: address),
+              // MyTextField(hint: 'Password', myController: password),
               const Padding(
                 padding: EdgeInsets.only(bottom: 20),
                 child: MyButton(text: 'Sign Up', page: MyPages()),

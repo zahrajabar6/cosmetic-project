@@ -1,10 +1,9 @@
-import 'package:cosmetic_project/colors.dart';
+import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
-class MyProfilePage extends StatelessWidget {
-  const MyProfilePage({Key? key}) : super(key: key);
+class MyCartPage extends StatelessWidget {
+  const MyCartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +11,7 @@ class MyProfilePage extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(Icons.arrow_back_ios),
-            color: grey,
-            iconSize: 28,
-          ),
-          title: Text('Profile',
+          title: Text('Cart',
               style: TextStyle(
                   color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
           centerTitle: true,

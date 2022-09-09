@@ -1,4 +1,6 @@
-import 'package:cosmetic_project/colors.dart';
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:flutter/material.dart';
 
 class MySplash extends StatelessWidget {

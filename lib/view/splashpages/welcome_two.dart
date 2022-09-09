@@ -1,7 +1,7 @@
-import 'package:cosmetic_project/colors.dart';
-import 'package:cosmetic_project/login_Signup_pages/login_page.dart';
-import 'package:cosmetic_project/my_button.dart';
-import 'package:cosmetic_project/splashpages/mysplash.dart';
+import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/my_button.dart';
+import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
+import 'package:cosmetic_project/view/splashpages/mysplash.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeTwo extends StatelessWidget {
