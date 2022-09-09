@@ -40,3 +40,19 @@ class MyHeadingText extends StatelessWidget {
     );
   }
 }
+
+class MySubHeadingText extends StatelessWidget {
+  const MySubHeadingText({Key? key, required this.text}) : super(key: key);
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Text(
+        text,
+        style:
+            TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: grey),
+      ),
+    );
+  }
+}

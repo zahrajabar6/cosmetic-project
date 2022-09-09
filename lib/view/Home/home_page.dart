@@ -1,3 +1,4 @@
+import 'package:cosmetic_project/controllers/category_tap.dart';
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_filtering_icon.dart';
 import 'package:cosmetic_project/controllers/my_search_field.dart';
@@ -26,7 +27,7 @@ class MyHomePage extends StatelessWidget {
           automaticallyImplyLeading: false,
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               Padding(
@@ -39,7 +40,11 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SliderTap(),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: SliderTap(),
+              ),
+              MyCategoryTap()
             ],
           ),
         ),

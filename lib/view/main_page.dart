@@ -34,6 +34,7 @@ class _MyPagesState extends State<MyPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background_color,
       extendBody: true,
       body: screens[index],
       bottomNavigationBar: CurvedNavigationBar(
