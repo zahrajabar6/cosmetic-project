@@ -3,6 +3,7 @@ import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/splashpages/mysplash.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeTwo extends StatelessWidget {
   const WelcomeTwo({Key? key}) : super(key: key);
@@ -37,9 +38,11 @@ Finished product and ingredients are not tested on animals. '''),
                   ),
               ],
             ),
-            const MyButton(
+            MyButton(
               text: 'Get Started',
-              page: LoginPage(),
+              onPress: () {
+                Get.to(const MyLogin());
+              },
             )
           ],
         ),

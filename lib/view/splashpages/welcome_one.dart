@@ -3,6 +3,7 @@ import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/view/splashpages/mysplash.dart';
 import 'package:cosmetic_project/view/splashpages/welcome_two.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeOne extends StatelessWidget {
   const WelcomeOne({Key? key}) : super(key: key);
@@ -43,9 +44,11 @@ class WelcomeOne extends StatelessWidget {
                 ),
               ],
             ),
-            const MyButton(
+            MyButton(
               text: 'Next',
-              page: WelcomeTwo(),
+              onPress: () {
+                Get.to(const WelcomeTwo());
+              },
             )
           ],
         ),

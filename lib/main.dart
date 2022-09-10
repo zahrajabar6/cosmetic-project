@@ -1,4 +1,3 @@
-import 'package:cosmetic_project/view/main_page.dart';
 import 'package:cosmetic_project/view/splashpages/logopage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,8 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Pure Beauty',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Lato'),
-      //home: const MyLogoPage(),
-      home: const MyPages(),
+      home: const MyLogoPage(),
     );
   }
 }

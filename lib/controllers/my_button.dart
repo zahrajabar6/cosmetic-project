@@ -1,20 +1,18 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyButton extends StatelessWidget {
-  const MyButton({Key? key, required this.text, required this.page})
+  const MyButton({Key? key, required this.text, required this.onPress})
       : super(key: key);
 
   final String text;
-  final Widget page;
+  //final Widget page;
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
-          Get.to(page);
-        },
+        onPressed: onPress,
         child: Container(
           height: 47,
           width: double.maxFinite,

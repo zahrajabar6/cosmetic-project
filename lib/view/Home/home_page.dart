@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 20),
                 child: SliderTap(),
               ),
-              MyCategoryTap()
+              const MyCategoryTap()
             ],
           ),
         ),

@@ -12,8 +12,8 @@ class ProductTap extends StatelessWidget {
     return Container(
       height: 200,
       width: 120,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(right: 10),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
