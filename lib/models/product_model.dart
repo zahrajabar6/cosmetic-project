@@ -6,17 +6,32 @@ class Product {
   final String product_name;
   final String brand;
   final String category;
-  //final String description;
-  //final String ingrediant;
+  final String color;
+  final String description;
+  final String ingrediant;
   final String price;
   final String image_url;
 
-  Product(
-      this.product_name,
-      this.brand,
-      this.category, //this.description,this.ingrediant
-      this.price,
-      this.image_url);
+  Product(this.product_name, this.brand, this.category, this.color,
+      this.description, this.ingrediant, this.price, this.image_url);
+
+  static RxDouble SubTotal = (0.0).obs;
+  static RxDouble Total = (0.0).obs;
+  static RxDouble Discount = (0.0).obs;
+  static RxDouble DilevaryCharge = (10.0).obs;
+
+  static double subTotal() {
+    List<double> prices =
+        cart_products.map((element) => double.parse(element.price)).toList();
+    for (double i in prices) {
+      SubTotal.value += i;
+    }
+    print(SubTotal.value);
+    return SubTotal.value;
+  }
+
+  static RxList<Product> fav_products = <Product>[].obs;
+  static RxList<Product> cart_products = <Product>[].obs;
 
   static RxList<Product> products = <Product>[
     product1,
@@ -47,50 +62,164 @@ class Product {
 
 //testing
 
-Product product1 =
-    Product('Lipstick', 'ILIA', 'Makeup', r'$28.00', 'images/ILIA.jpg');
+Product product1 = Product(
+    'Lipstick',
+    'ILIA',
+    'Makeup',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    '''- Apricot Seed Oil: Locks in moisture.
+- Castor Seed Oil: Softens and soothes.
+- Mango Seed Butter: Boosts elasticity.''',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product2 =
-    Product('Eyeshadow', 'ILIA', 'Makeup', r'$28.00', 'images/ILIA.jpg');
+Product product2 = Product(
+    'Eyeshadow',
+    'ILIA',
+    'Makeup',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product3 =
-    Product('Maskara', 'ILIA', 'Makeup', r'$28.00', 'images/ILIA.jpg');
+Product product3 = Product(
+    'Maskara',
+    'ILIA',
+    'Makeup',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product4 =
-    Product('Foundation', 'ILIA', 'Makeup', r'$28.00', 'images/ILIA.jpg');
+Product product4 = Product(
+    'Foundation',
+    'ILIA',
+    'Makeup',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product5 =
-    Product('Mask', 'ILIA', 'Skin Care', r'$28.00', 'images/ILIA.jpg');
+Product product5 = Product(
+    'Mask',
+    'ILIA',
+    'Skin Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product6 =
-    Product('Lotion', 'ILIA', 'Skin Care', r'$28.00', 'images/ILIA.jpg');
+Product product6 = Product(
+    'Lotion',
+    'ILIA',
+    'Skin Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product7 =
-    Product('Sun Block', 'ILIA', 'Skin Care', r'$28.00', 'images/ILIA.jpg');
+Product product7 = Product(
+    'Sun Block',
+    'ILIA',
+    'Skin Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product8 =
-    Product('Toner', 'ILIA', 'Skin Care', r'$28.00', 'images/ILIA.jpg');
+Product product8 = Product(
+    'Toner',
+    'ILIA',
+    'Skin Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product9 =
-    Product('Shampo', 'ILIA', 'Hair Care', r'$28.00', 'images/ILIA.jpg');
+Product product9 = Product(
+    'Shampo',
+    'ILIA',
+    'Hair Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product10 =
-    Product('anything1', 'ILIA', 'Hair Care', r'$28.00', 'images/ILIA.jpg');
+Product product10 = Product(
+    'anything1',
+    'ILIA',
+    'Hair Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product11 =
-    Product('anything2', 'ILIA', 'Hair Care', r'$28.00', 'images/ILIA.jpg');
+Product product11 = Product(
+    'anything2',
+    'ILIA',
+    'Hair Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product12 =
-    Product('anything3', 'ILIA', 'Hair Care', r'$28.00', 'images/ILIA.jpg');
+Product product12 = Product(
+    'anything3',
+    'ILIA',
+    'Hair Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product13 =
-    Product('Lotion', 'ILIA', 'Body Care', r'$28.00', 'images/ILIA.jpg');
+Product product13 = Product(
+    'Lotion',
+    'ILIA',
+    'Body Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product14 =
-    Product('anything4', 'ILIA', 'Body Care', r'$28.00', 'images/ILIA.jpg');
+Product product14 = Product(
+    'anything4',
+    'ILIA',
+    'Body Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product15 =
-    Product('anything5', 'ILIA', 'Body Care', r'$28.00', 'images/ILIA.jpg');
+Product product15 = Product(
+    'anything5',
+    'ILIA',
+    'Body Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');
 
-Product product16 =
-    Product('anything6', 'ILIA', 'Body Care', r'$28.00', 'images/ILIA.jpg');
+Product product16 = Product(
+    'anything6',
+    'ILIA',
+    'Body Care',
+    'Amberlight ',
+    'A clean, handcrafted lipstick with high-impact color and supreme hydration for all-day wear and care.',
+    ' - Apricot Seed Oil: Locks in moisture. - Castor Seed Oil: Softens and soothes. - Mango Seed Butter: Boosts elasticity.',
+    r'$28.00',
+    'images/ILIA.jpg');

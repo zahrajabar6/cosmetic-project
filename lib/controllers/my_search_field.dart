@@ -6,11 +6,11 @@ class MySearchField extends StatefulWidget {
   const MySearchField({
     Key? key,
     //required this.hint,
-    //required this.myController,
+    required this.myController,
   }) : super(key: key);
 
   //final String hint;
-  //final TextEditingController myController;
+  final TextEditingController myController;
 
   @override
   State<MySearchField> createState() => _MySearchFieldState();
@@ -23,7 +23,7 @@ class _MySearchFieldState extends State<MySearchField> {
     return SizedBox(
       height: 47,
       child: TextField(
-        //controller: widget.myController,
+        controller: widget.myController,
         onChanged: (x) {
           typed.value = x;
         },

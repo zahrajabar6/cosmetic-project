@@ -1,6 +1,6 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/controllers/my_filtering_icon.dart';
-import 'package:cosmetic_project/controllers/my_search_field.dart';
+import 'package:cosmetic_project/controllers/product_tap_two.dart';
+import 'package:cosmetic_project/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,14 +28,11 @@ class MyFavoritePage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Expanded(flex: 4, child: MySearchField()),
-                    Expanded(flex: 1, child: FilteringButton())
-                  ],
+              Expanded(
+                child: ListView(
+                  children: Product.fav_products
+                      .map((element) => ProductTapTwo(product: element))
+                      .toList(),
                 ),
               ),
             ],

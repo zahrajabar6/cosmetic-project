@@ -11,6 +11,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final search_controller = TextEditingController();
+
     return SafeArea(
       child: Scaffold(
         extendBody: true,
@@ -34,9 +36,13 @@ class MyHomePage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Expanded(flex: 4, child: MySearchField()),
-                    Expanded(flex: 1, child: FilteringButton())
+                  children: [
+                    Expanded(
+                        flex: 4,
+                        child: MySearchField(
+                          myController: search_controller,
+                        )),
+                    const Expanded(flex: 1, child: FilteringButton())
                   ],
                 ),
               ),

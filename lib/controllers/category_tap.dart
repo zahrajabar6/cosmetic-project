@@ -1,6 +1,6 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
-import 'package:cosmetic_project/controllers/product_tap.dart';
+import 'package:cosmetic_project/controllers/product_tap_one.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,6 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(child: MySubHeadingText(text: e)),
                           TextButton(
@@ -43,7 +42,8 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
                             scrollDirection: Axis.horizontal,
                             children: Product.products
                                 .where((p) => p.category == e)
-                                .map((element) => ProductTap(product: element))
+                                .map((element) =>
+                                    ProductTapOne(product: element))
                                 .toList()),
                       )
                     ])))
