@@ -20,16 +20,6 @@ class Product {
   static RxDouble Discount = (0.0).obs;
   static RxDouble DilevaryCharge = (10.0).obs;
 
-  static double subTotal() {
-    List<double> prices =
-        cart_products.map((element) => double.parse(element.price)).toList();
-    for (double i in prices) {
-      SubTotal.value += i;
-    }
-    print(SubTotal.value);
-    return SubTotal.value;
-  }
-
   static RxList<Product> fav_products = <Product>[].obs;
   static RxList<Product> cart_products = <Product>[].obs;
 

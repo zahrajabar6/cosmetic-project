@@ -4,8 +4,9 @@ import 'package:cosmetic_project/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MyFavoritePage extends StatelessWidget {
-  const MyFavoritePage({Key? key}) : super(key: key);
+class MyCategoryPage extends StatelessWidget {
+  const MyCategoryPage({Key? key, required this.category}) : super(key: key);
+  final String category;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MyFavoritePage extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         appBar: AppBar(
-          title: Text('Favorite',
+          title: Text(category,
               style: TextStyle(
                   color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
           centerTitle: true,
@@ -28,7 +29,8 @@ class MyFavoritePage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Expanded(
             child: ListView(
-              children: Product.fav_products
+              children: Product.products
+                  .where((p) => p.category == category)
                   .map((element) => ProductTapTwo(product: element))
                   .toList(),
             ),

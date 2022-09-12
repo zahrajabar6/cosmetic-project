@@ -29,7 +29,8 @@ class MyCartPage extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: ListView(
                   children: Product.cart_products
                       .map((element) => ProductTapTwo(product: element))

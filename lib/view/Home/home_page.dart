@@ -1,7 +1,5 @@
 import 'package:cosmetic_project/controllers/category_tap.dart';
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/controllers/my_filtering_icon.dart';
-import 'package:cosmetic_project/controllers/my_search_field.dart';
 import 'package:cosmetic_project/view/Home/slider_tap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +9,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final search_controller = TextEditingController();
 
     return SafeArea(
       child: Scaffold(
@@ -31,26 +28,12 @@ class MyHomePage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            children: [
+            children: const [
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        flex: 4,
-                        child: MySearchField(
-                          myController: search_controller,
-                        )),
-                    const Expanded(flex: 1, child: FilteringButton())
-                  ],
-                ),
-              ),
-              const Padding(
                 padding: EdgeInsets.only(bottom: 20),
                 child: SliderTap(),
               ),
-              const MyCategoryTap()
+              MyCategoryTap()
             ],
           ),
         ),

@@ -2,7 +2,9 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/product_tap_one.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/view/category_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyCategoryTap extends StatefulWidget {
   const MyCategoryTap({Key? key}) : super(key: key);
@@ -26,7 +28,9 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
                         children: [
                           Expanded(child: MySubHeadingText(text: e)),
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                //Get.to(MyCategoryPage());
+                              },
                               child: Text(
                                 'See All',
                                 style: TextStyle(
