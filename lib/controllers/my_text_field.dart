@@ -8,11 +8,17 @@ class MyTextField extends StatelessWidget {
     required this.myController,
     required this.typed,
     required this.hint,
+    required this.obsecure,
+    required this.readonly,
+    required this.icon,
   }) : super(key: key);
 
   final TextEditingController myController;
   final RxString typed;
   final String hint;
+  final bool obsecure;
+  final bool readonly;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +29,16 @@ class MyTextField extends StatelessWidget {
         onChanged: (x) {
           typed.value = x;
         },
+        readOnly: readonly,
+        obscureText: obsecure,
+        enableSuggestions: false,
+        autocorrect: false,
         style: const TextStyle(fontSize: 20),
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,
           hintText: hint,
+          hintStyle: TextStyle(color: grey.withOpacity(0.20)),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(width: 1, color: grey.withOpacity(0.20)),
@@ -39,8 +50,8 @@ class MyTextField extends StatelessWidget {
           suffixIcon: TextButton(
             child: Obx(() {
               return Icon(
-                Icons.search_rounded,
-                color: typed.isEmpty ? grey : green,
+                icon,
+                color: typed.isEmpty ? grey.withOpacity(0.70) : green,
                 size: 30,
               );
             }),

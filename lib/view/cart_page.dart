@@ -44,14 +44,14 @@ class MyCartPage extends StatelessWidget {
                   builder: (context, scrollController) {
                     return ClipRRect(
                       borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(20)),
+                          const BorderRadius.vertical(top: Radius.circular(20)),
                       child: Container(
                         decoration: BoxDecoration(
                             color: background_color,
                             border: Border(
                                 top:
                                     BorderSide(color: grey.withOpacity(0.10)))),
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: ListView(
                           controller: scrollController,
                           children: [

@@ -20,7 +20,7 @@ class ProductPage extends StatelessWidget {
         appBar: AppBar(
           leading: TextButton(
               onPressed: () {
-                Get.to(MyPages());
+                Get.to(const MyPages());
               },
               child: Icon(
                 Icons.arrow_back_ios,
@@ -42,10 +42,10 @@ class ProductPage extends StatelessWidget {
               isPressed.value = !isPressed.value;
               if (isPressed.value) {
                 Product.fav_products.add(product);
-                print(Product.fav_products);
+                //print(Product.fav_products);
               } else {
                 Product.fav_products.remove(product);
-                print(Product.fav_products);
+                //print(Product.fav_products);
               }
             }, child: Obx(() {
               return Icon(
@@ -66,7 +66,7 @@ class ProductPage extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   Product.cart_products.add(product);
-                  print(Product.cart_products);
+                  //print(Product.cart_products);
                 },
                 child: Center(
                   child: Text(

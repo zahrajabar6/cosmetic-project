@@ -1,8 +1,10 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class MyCategoryPage extends StatelessWidget {
   const MyCategoryPage({Key? key, required this.category}) : super(key: key);
@@ -14,6 +16,15 @@ class MyCategoryPage extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         appBar: AppBar(
+          leading: TextButton(
+              onPressed: () {
+                Get.to(const MyPages());
+              },
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: 24,
+                color: grey,
+              )),
           title: Text(category,
               style: TextStyle(
                   color: grey, fontSize: 26, fontWeight: FontWeight.bold)),

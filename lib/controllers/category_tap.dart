@@ -29,7 +29,9 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
                           Expanded(child: MySubHeadingText(text: e)),
                           TextButton(
                               onPressed: () {
-                                //Get.to(MyCategoryPage());
+                                Get.to(MyCategoryPage(
+                                  category: e,
+                                ));
                               },
                               child: Text(
                                 'See All',

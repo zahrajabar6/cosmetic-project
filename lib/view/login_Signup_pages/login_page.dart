@@ -39,6 +39,7 @@ class _MyLoginState extends State<MyLogin> {
                   ),
                   const MyHeadingText(text: 'Login to your account'),
                   MyTextFormField(
+                      obsecure: false,
                       label: 'Email',
                       validator: (x) {
                         String pattern =
@@ -53,6 +54,7 @@ class _MyLoginState extends State<MyLogin> {
                         }
                       }),
                   MyTextFormField(
+                      obsecure: true,
                       label: 'Password',
                       validator: (x) {
                         if (x!.length < 8 || x.isEmpty) {

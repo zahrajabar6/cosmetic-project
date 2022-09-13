@@ -46,6 +46,9 @@ class _MySearchPageState extends State<MySearchPage> {
                     Expanded(
                       flex: 4,
                       child: MyTextField(
+                        icon: Icons.search_rounded,
+                        readonly: false,
+                        obsecure: false,
                         hint: 'Search...',
                         myController: myController,
                         typed: typed,

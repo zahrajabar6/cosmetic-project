@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
   const MyTextFormField(
-      {Key? key, required this.label, required this.validator})
+      {Key? key,
+      required this.label,
+      required this.validator,
+      required this.obsecure})
       : super(key: key);
   final String label;
   final FormFieldValidator<String> validator;
+  final bool obsecure;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +21,12 @@ class MyTextFormField extends StatelessWidget {
         child: SizedBox(
           height: 50,
           child: TextFormField(
+            obscureText: obsecure,
+            enableSuggestions: false,
+            autocorrect: false,
             cursorColor: green,
             decoration: InputDecoration(
+              errorStyle: const TextStyle(fontSize: 14),
               labelText: label,
               labelStyle:
                   TextStyle(color: grey.withOpacity(0.70), fontSize: 18),
