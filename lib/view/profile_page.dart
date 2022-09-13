@@ -43,84 +43,86 @@ class _MyProfilePageState extends State<MyProfilePage> {
           automaticallyImplyLeading: false,
         ),
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(75),
-                    child: const SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: Image(
-                          image: AssetImage('images/Profile.jpg'),
-                          fit: BoxFit.contain),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(75),
+                      child: const SizedBox(
+                        height: 150,
+                        width: 150,
+                        child: Image(
+                            image: AssetImage('images/Profile.jpg'),
+                            fit: BoxFit.contain),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: MyTextField(
-                    icon: Icons.person,
-                    readonly: true,
-                    myController: nameController,
-                    typed: name,
-                    hint: 'Name',
-                    obsecure: false,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: MyTextField(
+                      icon: Icons.person,
+                      readonly: true,
+                      myController: nameController,
+                      typed: name,
+                      hint: 'Name',
+                      obsecure: false,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: MyTextField(
-                    icon: Icons.email,
-                    readonly: true,
-                    myController: emailController,
-                    typed: email,
-                    hint: 'email',
-                    obsecure: false,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: MyTextField(
+                      icon: Icons.email,
+                      readonly: true,
+                      myController: emailController,
+                      typed: email,
+                      hint: 'email',
+                      obsecure: false,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: MyTextField(
-                    icon: Icons.phone,
-                    readonly: true,
-                    myController: phoneController,
-                    typed: phone,
-                    hint: 'Phone',
-                    obsecure: false,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: MyTextField(
+                      icon: Icons.phone,
+                      readonly: true,
+                      myController: phoneController,
+                      typed: phone,
+                      hint: 'Phone',
+                      obsecure: false,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: MyTextField(
-                    icon: Icons.location_on,
-                    readonly: true,
-                    myController: addressController,
-                    typed: address,
-                    hint: 'Address',
-                    obsecure: false,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: MyTextField(
+                      icon: Icons.location_on,
+                      readonly: true,
+                      myController: addressController,
+                      typed: address,
+                      hint: 'Address',
+                      obsecure: false,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: MyTextField(
-                    icon: Icons.password_rounded,
-                    readonly: true,
-                    myController: passwordController,
-                    typed: password,
-                    hint: 'Password',
-                    obsecure: true,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: MyTextField(
+                      icon: Icons.password_rounded,
+                      readonly: true,
+                      myController: passwordController,
+                      typed: password,
+                      hint: 'Password',
+                      obsecure: true,
+                    ),
                   ),
-                ),
-                MyButton(
-                    text: 'Log Out',
-                    onPress: () {
-                      Get.to(const MyLogin());
-                    })
-              ],
+                  MyButton(
+                      text: 'Log Out',
+                      onPress: () {
+                        Get.to(const MyLogin());
+                      })
+                ],
+              ),
             ),
           ),
         ),
