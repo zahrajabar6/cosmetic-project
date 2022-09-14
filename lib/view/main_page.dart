@@ -1,6 +1,6 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_icons.dart';
-import 'package:cosmetic_project/view/cart_page.dart';
+import 'package:cosmetic_project/view/cart/cart_page.dart';
 import 'package:cosmetic_project/view/favorite_page.dart';
 import 'package:cosmetic_project/view/Home/home_page.dart';
 import 'package:cosmetic_project/view/profile_page.dart';

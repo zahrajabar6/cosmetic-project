@@ -1,5 +1,4 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/controllers/my_filtering_icon.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
@@ -44,7 +43,6 @@ class _MySearchPageState extends State<MySearchPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      flex: 4,
                       child: MyTextField(
                         icon: Icons.search_rounded,
                         readonly: false,
@@ -54,7 +52,6 @@ class _MySearchPageState extends State<MySearchPage> {
                         typed: typed,
                       ),
                     ),
-                    const Expanded(flex: 1, child: FilteringButton())
                   ],
                 ),
               ),

@@ -42,16 +42,16 @@ class ProductPage extends StatelessWidget {
               isPressed.value = !isPressed.value;
               if (isPressed.value) {
                 Product.fav_products.add(product);
-                //print(Product.fav_products);
               } else {
                 Product.fav_products.remove(product);
-                //print(Product.fav_products);
               }
             }, child: Obx(() {
               return Icon(
-                isPressed.value ? Icons.favorite : Icons.favorite_border,
+                Product.isFavorite(product)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
                 size: 24,
-                color: isPressed.value ? Colors.red : grey,
+                color: Product.isFavorite(product) ? Colors.red : grey,
               );
             }))
           ],
@@ -65,8 +65,11 @@ class ProductPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10), color: green),
               child: TextButton(
                 onPressed: () {
-                  Product.cart_products.add(product);
-                  //print(Product.cart_products);
+                  if (Product.isOnCart(product)) {
+                    product.quantity += 1;
+                  } else {
+                    Product.cart_products.add(product);
+                  }
                 },
                 child: Center(
                   child: Text(

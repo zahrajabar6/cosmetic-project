@@ -26,12 +26,17 @@ class MyFavoritePage extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Expanded(
-            child: ListView(
-              children: Product.fav_products
-                  .map((element) => ProductTapTwo(product: element))
-                  .toList(),
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: ListView(
+                  children: Product.fav_products
+                      .map((element) => ProductTapTwo(product: element))
+                      .toList(),
+                ),
+              ),
+            ],
           ),
         ),
       ),
