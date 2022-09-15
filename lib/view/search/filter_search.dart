@@ -10,7 +10,7 @@ class MySearchFilter extends StatelessWidget {
     return ListView(
         children: Product.categories
             .map((e) => Container(
-                  height: 200,
+                  height: 150,
                   width: double.maxFinite,
                   padding: const EdgeInsets.all(15),
                   margin: const EdgeInsets.only(bottom: 10),
@@ -18,12 +18,14 @@ class MySearchFilter extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: grey.withOpacity(0.10))),
-                  child: Text(
-                    e,
-                    style: TextStyle(
-                        fontSize: 50,
-                        color: green,
-                        fontWeight: FontWeight.bold),
+                  child: Center(
+                    child: Text(
+                      e,
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: green,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ))
             .toList());

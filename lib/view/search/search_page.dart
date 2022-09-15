@@ -58,7 +58,7 @@ class _MySearchPageState extends State<MySearchPage> {
               ),
               Expanded(
                 child: Obx(() {
-                  return typed.isEmpty
+                  return typed.isNotEmpty
                       ? ListView(
                           children: Product.products
                               .where((p) =>
