@@ -1,7 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/view/splashpages/mysplash.dart';
-import 'package:cosmetic_project/view/splashpages/welcome_two.dart';
+import 'package:cosmetic_project/view/onboarding%20screens/welcome_two.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

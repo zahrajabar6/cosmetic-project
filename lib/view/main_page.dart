@@ -4,7 +4,7 @@ import 'package:cosmetic_project/view/cart/cart_page.dart';
 import 'package:cosmetic_project/view/favorite_page.dart';
 import 'package:cosmetic_project/view/Home/home_page.dart';
 import 'package:cosmetic_project/view/profile_page.dart';
-import 'package:cosmetic_project/view/search_page.dart';
+import 'package:cosmetic_project/view/search/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:cosmetic_project/view/splashpages/welcome_one.dart';
+import 'package:cosmetic_project/view/onboarding%20screens/welcome_one.dart';
 import 'package:get/get.dart';
 
 startTime() async {

@@ -129,6 +129,7 @@ class ProductTapThree extends StatelessWidget {
                       } else {
                         product.quantity.value = 0;
                         Product.cart_products.remove(product);
+                        Get.snackbar('Oops!', 'Product has been deleted');
                       }
                     },
                     child: Container(
