@@ -10,7 +10,7 @@ class ProductPage extends StatelessWidget {
   const ProductPage({Key? key, required this.product}) : super(key: key);
 
   final Product product;
-  static RxBool isPressed = false.obs;
+  //static RxBool isPressed = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,10 @@ class ProductPage extends StatelessWidget {
           automaticallyImplyLeading: false,
           actions: [
             TextButton(onPressed: () {
-              isPressed.value = !isPressed.value;
-              if (isPressed.value) {
-                Product.fav_products.add(product);
-              } else {
+              if (Product.isFavorite(product)) {
                 Product.fav_products.remove(product);
+              } else {
+                Product.fav_products.add(product);
               }
             }, child: Obx(() {
               return Icon(

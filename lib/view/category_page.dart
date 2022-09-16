@@ -1,4 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/my_filtering.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/view/main_page.dart';
@@ -15,8 +16,11 @@ class MyCategoryPage extends StatefulWidget {
 }
 
 class _MyCategoryPageState extends State<MyCategoryPage> {
-  List<String> filteringItems = ['Default', 'Ascending', 'Descending'];
-  List<String> filteringList = ['Price', 'Rate'];
+  final List<String> filteringList = ["Price", "Rate"];
+  final List<String> filteringItems = ['Default', 'Ascending', 'Descending'];
+  String? firstselectedItem;
+  String? seconedselectedItem;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,6 +52,33 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MyFiltering(
+                        items: filteringList,
+                        selectedItem: firstselectedItem,
+                        onChanged: (value) {
+                          setState(() {
+                            firstselectedItem = value;
+                            print(firstselectedItem);
+                          });
+                        },
+                      ),
+                      MyFiltering(
+                        items: filteringItems,
+                        selectedItem: seconedselectedItem,
+                        onChanged: (value) {
+                          setState(() {
+                            seconedselectedItem = value;
+                            print(seconedselectedItem);
+                          });
+                        },
+                      ),
+                    ]),
+              ),
               Expanded(
                 child: ListView(
                   children: Product.products
