@@ -2,7 +2,7 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
-import 'package:cosmetic_project/view/search/filter_search.dart';
+import 'package:cosmetic_project/view/search/searching.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -71,7 +71,7 @@ class _MySearchPageState extends State<MySearchPage> {
                               .map((element) => ProductTapTwo(product: element))
                               .toList(),
                         )
-                      : const MySearchFilter();
+                      : const Searching();
                 }),
               )
             ],
