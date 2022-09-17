@@ -63,7 +63,6 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                         onChanged: (value) {
                           setState(() {
                             firstselectedItem = value;
-                            print(firstselectedItem);
                           });
                         },
                       ),
@@ -73,7 +72,6 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                         onChanged: (value) {
                           setState(() {
                             seconedselectedItem = value;
-                            print(seconedselectedItem);
                           });
                         },
                       ),

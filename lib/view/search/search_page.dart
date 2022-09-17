@@ -71,7 +71,7 @@ class _MySearchPageState extends State<MySearchPage> {
                               .map((element) => ProductTapTwo(product: element))
                               .toList(),
                         )
-                      : MySearchFilter();
+                      : const MySearchFilter();
                 }),
               )
             ],

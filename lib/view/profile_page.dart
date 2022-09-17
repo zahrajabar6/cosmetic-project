@@ -5,6 +5,7 @@ import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProfilePage extends StatefulWidget {
   const MyProfilePage({Key? key}) : super(key: key);
@@ -118,7 +119,9 @@ class _MyProfilePageState extends State<MyProfilePage> {
                   ),
                   MyButton(
                       text: 'Log Out',
-                      onPress: () {
+                      onPress: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        prefs.setBool('showLogin', false);
                         Get.to(const MyLogin());
                       })
                 ],

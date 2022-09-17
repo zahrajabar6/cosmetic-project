@@ -3,7 +3,8 @@ import 'package:cosmetic_project/view/splashpages/delay.dart';
 import 'package:flutter/material.dart';
 
 class MyLogoPage extends StatefulWidget {
-  const MyLogoPage({Key? key}) : super(key: key);
+  const MyLogoPage({Key? key, required this.page}) : super(key: key);
+  final Widget page;
 
   @override
   State<MyLogoPage> createState() => _MyLogoPageState();
@@ -15,7 +16,7 @@ class _MyLogoPageState extends State<MyLogoPage> {
     // ignore: todo
     //TODO: implement initState
     super.initState();
-    startTime();
+    startTime(widget.page);
   }
 
   @override
