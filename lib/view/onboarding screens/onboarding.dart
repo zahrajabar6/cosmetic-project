@@ -15,7 +15,6 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-  //final introKey = GlobalKey<IntroductionScreenState>();
   final controller = PageController();
 
   @override
@@ -38,9 +37,10 @@ class _OnboardingState extends State<Onboarding> {
           }),
           WelcomeTwo(
             onPress: () async {
-              Get.to(const MyLogin());
               final prefs = await SharedPreferences.getInstance();
               prefs.setBool('showLogin', true);
+
+              Get.to(const MyLogin());
             },
           )
         ]),
@@ -53,7 +53,11 @@ class _OnboardingState extends State<Onboarding> {
           controller: controller,
           count: 2,
           effect: WormEffect(
-              spacing: 15, dotColor: Colors.black26, activeDotColor: green),
+              spacing: 15,
+              dotColor: Colors.black26,
+              activeDotColor: green,
+              dotHeight: 10,
+              dotWidth: 10),
         )),
       ),
     );

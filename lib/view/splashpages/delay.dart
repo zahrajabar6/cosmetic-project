@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:cosmetic_project/view/onboarding%20screens/onboarding.dart';
 import 'package:get/get.dart';
 
-startTime(Widget page) async {
+startTime() async {
   var duration = const Duration(seconds: 5);
-  return Timer(duration, route(page));
+  return Timer(duration, route);
 }
 
-route(Widget page) {
-  Get.to(page);
+route() {
+  Get.to(const Onboarding());
 }
