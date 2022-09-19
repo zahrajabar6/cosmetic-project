@@ -16,6 +16,7 @@ class MyTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () {
+          FocusScope.of(context).unfocus();
           Get.to(page);
         },
         child: Text(

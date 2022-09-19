@@ -20,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: background_color,
         body: Center(
           child: SingleChildScrollView(
@@ -100,6 +101,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: MyButton(
                           text: 'Sign Up',
                           onPress: () {
+                            FocusScope.of(context).unfocus();
                             if (formKey.currentState!.validate()) {
                               Get.to(const MyPages());
                             }
