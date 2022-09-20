@@ -12,9 +12,9 @@ class OrderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
-        initialChildSize: 0.1,
-        minChildSize: 0.1,
-        maxChildSize: 0.4,
+        initialChildSize: 0.15,
+        minChildSize: 0.15,
+        maxChildSize: 0.5,
         builder: (context, scrollController) {
           return ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),

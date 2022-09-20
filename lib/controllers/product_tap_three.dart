@@ -18,7 +18,7 @@ class ProductTapThree extends StatelessWidget {
         ));
       },
       child: Container(
-        height: 130,
+        height: 160,
         width: double.maxFinite,
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.only(bottom: 10),

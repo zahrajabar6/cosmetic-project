@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
+import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,16 +16,6 @@ class MyProfilePage extends StatefulWidget {
 }
 
 class _MyProfilePageState extends State<MyProfilePage> {
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final addressController = TextEditingController();
-  final phoneController = TextEditingController();
-  final passwordController = TextEditingController();
-  RxString name = ''.obs;
-  RxString email = ''.obs;
-  RxString address = ''.obs;
-  RxString phone = ''.obs;
-  RxString password = ''.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -66,57 +57,35 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     padding: const EdgeInsets.only(bottom: 20),
                     child: MyTextField(
                       icon: Icons.person,
-                      readonly: true,
-                      myController: nameController,
-                      typed: name,
-                      hint: 'Name',
-                      obsecure: false,
+                      hint: '${Account.currentAccount.firstName} ${Account.currentAccount.lastname}',
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: MyTextField(
                       icon: Icons.email,
-                      readonly: true,
-                      myController: emailController,
-                      typed: email,
-                      hint: 'email',
-                      obsecure: false,
+                      hint: Account.currentAccount.email,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: MyTextField(
                       icon: Icons.phone,
-                      readonly: true,
-                      myController: phoneController,
-                      typed: phone,
-                      hint: 'Phone',
-                      obsecure: false,
+                      hint: Account.currentAccount.phone?? 'Phone Number',
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: MyTextField(
                       icon: Icons.location_on,
-                      readonly: true,
-                      myController: addressController,
-                      typed: address,
-                      hint: 'Address',
-                      obsecure: false,
+                      hint: Account.currentAccount.address ?? 'Address',
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: MyTextField(
-                      icon: Icons.password_rounded,
-                      readonly: true,
-                      myController: passwordController,
-                      typed: password,
-                      hint: 'Password',
-                      obsecure: true,
-                    ),
-                  ),
+                  MyButton(
+                      text: 'Edit Profile',
+                      onPress: ()  {
+
+                      }),
                   MyButton(
                       text: 'Log Out',
                       onPress: () async {

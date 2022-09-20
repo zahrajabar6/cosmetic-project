@@ -5,7 +5,8 @@ import 'package:cosmetic_project/controllers/text_form_field.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import '../../services/auth/auth.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -16,6 +17,15 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final formKey = GlobalKey<FormState>();
+  String firstName='';
+  String lastName='';
+  String email='';
+  String password1='';
+  String password2='';
+  String phoneNumber='';
+  String address='';
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
         body: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Form(
                 key: formKey,
                 child: Column(
@@ -43,7 +53,23 @@ class _RegisterPageState extends State<RegisterPage> {
                       const MyHeadingText(text: 'Create your account'),
                       MyTextFormField(
                           obsecure: false,
-                          label: 'Name',
+                          label: 'First Name',
+                          onChanged: (x){
+                            firstName=x;
+                          },
+                          validator: (x) {
+                            if (x!.isEmpty) {
+                              return 'Enter your name';
+                            } else {
+                              return null;
+                            }
+                          }),
+                      MyTextFormField(
+                          obsecure: false,
+                          label: 'Last Name',
+                          onChanged: (x){
+                            lastName=x;
+                          },
                           validator: (x) {
                             if (x!.isEmpty) {
                               return 'Enter your name';
@@ -54,6 +80,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       MyTextFormField(
                           obsecure: false,
                           label: 'Email',
+                          onChanged: (x){
+                            email=x;
+                          },
                           validator: (x) {
                             String pattern =
                                 r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
@@ -69,6 +98,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       MyTextFormField(
                           obsecure: false,
                           label: 'Phone',
+                          onChanged: (x){
+                            phoneNumber=x;
+                          },
                           validator: (x) {
                             if (x!.length < 11 || x.isEmpty) {
                               return 'Unvalid number';
@@ -79,6 +111,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       MyTextFormField(
                           obsecure: false,
                           label: 'Address',
+                          onChanged: (x){
+                            address=x;
+                          },
                           validator: (x) {
                             if (x!.isEmpty) {
                               return 'Enter your address';
@@ -89,9 +124,25 @@ class _RegisterPageState extends State<RegisterPage> {
                       MyTextFormField(
                           obsecure: true,
                           label: 'Password',
+                          onChanged: (x){
+                            password1=x;
+                          },
                           validator: (x) {
                             if (x!.length < 8 || x.isEmpty) {
                               return 'Wrong password';
+                            } else {
+                              return null;
+                            }
+                          }),
+                      MyTextFormField(
+                          obsecure: true,
+                          label: 'Confirm Password',
+                          onChanged: (x){
+                            password2=x;
+                          },
+                          validator: (x) {
+                            if (x!=password1) {
+                              return "Passwords don't match";
                             } else {
                               return null;
                             }
@@ -100,10 +151,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         padding: const EdgeInsets.only(bottom: 20),
                         child: MyButton(
                           text: 'Sign Up',
-                          onPress: () {
+                          onPress: () async {
                             FocusScope.of(context).unfocus();
                             if (formKey.currentState!.validate()) {
-                              Get.to(const MyPages());
+                               AuthService.signup(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address, email: email, password1: password1, password2: password2);
                             }
                           },
                         ),

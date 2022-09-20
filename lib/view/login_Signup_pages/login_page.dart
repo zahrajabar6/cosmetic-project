@@ -2,6 +2,7 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
+import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
@@ -17,6 +18,8 @@ class MyLogin extends StatefulWidget {
 
 class _MyLoginState extends State<MyLogin> {
   final formKey = GlobalKey<FormState>();
+  String email='';
+  String password='';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,6 +48,9 @@ class _MyLoginState extends State<MyLogin> {
                       MyTextFormField(
                           obsecure: false,
                           label: 'Email',
+                          onChanged: (x){
+                            email=x;
+                          },
                           validator: (x) {
                             String pattern =
                                 r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
@@ -60,9 +66,12 @@ class _MyLoginState extends State<MyLogin> {
                       MyTextFormField(
                           obsecure: true,
                           label: 'Password',
+                          onChanged: (x){
+                            password=x;
+                          },
                           validator: (x) {
                             if (x!.length < 8 || x.isEmpty) {
-                              return 'Wrong password';
+                              return 'Your password is short';
                             } else {
                               return null;
                             }
@@ -71,12 +80,11 @@ class _MyLoginState extends State<MyLogin> {
                         padding: const EdgeInsets.only(bottom: 20),
                         child: MyButton(
                           text: 'Sign In',
-                          onPress: () {
+                          onPress: () async {
                             FocusScope.of(context).unfocus();
+
                             if (formKey.currentState!.validate()) {
-                              AuthService.signin(
-                                  email: 'email', password: 'password');
-                              //Get.to(const MyPages());
+                              AuthService.signin(email: email, password: password);
                             }
                           },
                         ),

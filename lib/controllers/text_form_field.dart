@@ -6,11 +6,12 @@ class MyTextFormField extends StatelessWidget {
       {Key? key,
       required this.label,
       required this.validator,
-      required this.obsecure})
+      required this.obsecure, this.onChanged})
       : super(key: key);
   final String label;
   final FormFieldValidator<String> validator;
   final bool obsecure;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class MyTextFormField extends StatelessWidget {
         child: SizedBox(
           height: 50,
           child: TextFormField(
+            onChanged: onChanged,
             obscureText: obsecure,
+            textInputAction: TextInputAction.next,
             enableSuggestions: false,
             autocorrect: false,
             cursorColor: green,
