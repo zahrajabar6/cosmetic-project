@@ -2,12 +2,10 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
-import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -84,7 +82,7 @@ class _MyLoginState extends State<MyLogin> {
                             FocusScope.of(context).unfocus();
 
                             if (formKey.currentState!.validate()) {
-                              AuthService.signin(email: email, password: password);
+                              AuthService.signIn(email: email, password: password);
                             }
                           },
                         ),

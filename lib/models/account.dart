@@ -6,11 +6,12 @@ class Account {
   final String email;
   final String? phone;
   final String? address;
+  final String? token;
 
   Account( {
     required this.firstName,
     required this.lastname,
-    //required this.token,
+     this.token,
 
     required this.email,
      this.phone,

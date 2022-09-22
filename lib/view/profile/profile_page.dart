@@ -3,6 +3,7 @@ import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
+import 'package:cosmetic_project/view/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,9 +14,11 @@ class MyProfilePage extends StatefulWidget {
 
   @override
   State<MyProfilePage> createState() => _MyProfilePageState();
+
 }
 
 class _MyProfilePageState extends State<MyProfilePage> {
+@override
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                   color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
           centerTitle: true,
           systemOverlayStyle: const SystemUiOverlayStyle(
+
               statusBarColor: Colors.transparent,
               statusBarIconBrightness: Brightness.dark),
           backgroundColor: Colors.transparent,
@@ -84,7 +88,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                   MyButton(
                       text: 'Edit Profile',
                       onPress: ()  {
-
+                        Get.to(const EditProfile());
                       }),
                   MyButton(
                       text: 'Log Out',

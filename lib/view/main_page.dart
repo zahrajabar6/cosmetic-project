@@ -3,10 +3,11 @@ import 'package:cosmetic_project/controllers/my_icons.dart';
 import 'package:cosmetic_project/view/cart/cart_page.dart';
 import 'package:cosmetic_project/view/favorite_page.dart';
 import 'package:cosmetic_project/view/Home/home_page.dart';
-import 'package:cosmetic_project/view/profile_page.dart';
+import 'package:cosmetic_project/view/profile/profile_page.dart';
 import 'package:cosmetic_project/view/search/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyPages extends StatefulWidget {
   const MyPages({Key? key}) : super(key: key);
@@ -33,23 +34,24 @@ class _MyPagesState extends State<MyPages> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: background_color,
-      extendBody: true,
-      body: screens[index],
-      bottomNavigationBar: CurvedNavigationBar(
-          color: light_green,
-          backgroundColor: Colors.transparent,
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 300),
-          height: 60,
-          index: index,
-          items: items,
-          onTap: (index) {
-            setState(() {
-              this.index = index;
-            });
-          }),
+    return SafeArea(
+      child: Scaffold(
+        extendBody: true,
+        body: screens[index],
+        bottomNavigationBar: CurvedNavigationBar(
+            color: light_green,
+            backgroundColor: Colors.transparent,
+            animationCurve: Curves.easeInOut,
+            animationDuration: const Duration(milliseconds: 300),
+            height: 60,
+            index: index,
+            items: items,
+            onTap: (index) {
+              setState(() {
+                this.index = index;
+              });
+            }),
+      ),
     );
   }
 }

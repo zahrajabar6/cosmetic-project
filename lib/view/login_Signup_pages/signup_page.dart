@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                           validator: (x) {
                             if (x!.length < 11 || x.isEmpty) {
-                              return 'Unvalid number';
+                              return 'Invalid number';
                             } else {
                               return null;
                             }
@@ -154,7 +154,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPress: () async {
                             FocusScope.of(context).unfocus();
                             if (formKey.currentState!.validate()) {
-                               AuthService.signup(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address, email: email, password1: password1, password2: password2);
+                               AuthService.signUp(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address, email: email, password1: password1, password2: password2);
+
                             }
                           },
                         ),
