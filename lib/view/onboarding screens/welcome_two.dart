@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/view/onboarding%20screens/mysplash.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeTwo extends StatelessWidget {
   const WelcomeTwo({Key? key, required this.onPress}) : super(key: key);
@@ -23,7 +24,7 @@ class WelcomeTwo extends StatelessWidget {
                     '''Our products does not contain any animal or animal-derived ingredients.
 Finished product and ingredients are not tested on animals. '''),
           ),
-          MyButton(text: 'Get Started', onPress: onPress)
+          MyButton(isLoading: false.obs,text: 'Get Started', onPress: onPress)
         ],
       ),
     );

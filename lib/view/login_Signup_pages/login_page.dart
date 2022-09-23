@@ -77,6 +77,7 @@ class _MyLoginState extends State<MyLogin> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
                         child: MyButton(
+                          isLoading: AuthService.isLogin ,
                           text: 'Sign In',
                           onPress: () async {
                             FocusScope.of(context).unfocus();

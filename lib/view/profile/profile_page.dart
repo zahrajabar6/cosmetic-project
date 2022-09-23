@@ -86,11 +86,13 @@ class _MyProfilePageState extends State<MyProfilePage> {
                     ),
                   ),
                   MyButton(
+                      isLoading: false.obs,
                       text: 'Edit Profile',
                       onPress: ()  {
                         Get.to(const EditProfile());
                       }),
                   MyButton(
+                      isLoading: false.obs,
                       text: 'Log Out',
                       onPress: () async {
                         final prefs = await SharedPreferences.getInstance();

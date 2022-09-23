@@ -1,14 +1,13 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyButton extends StatelessWidget {
-  const MyButton({Key? key, required this.text, required this.onPress})
+  const MyButton({Key? key, required this.text, required this.onPress, required this.isLoading})
       : super(key: key);
 
   final String text;
-  //final Widget page;
+  final RxBool isLoading;
   final VoidCallback onPress;
 
   @override
@@ -22,7 +21,7 @@ class MyButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10), color: green),
           child: Center(
             child: Obx((){
-                return  !AuthService.isBusy.value ? Text(
+                return  !isLoading.value ? Text(
                   text,
                   textAlign: TextAlign.center,
                   style: TextStyle(

@@ -121,12 +121,14 @@ class _EditProfileState extends State<EditProfile> {
                           }
                         }),
                     MyButton(
+                        isLoading: false.obs,
                        text: r'Change Password',
                         onPress: ()  {
                           FocusScope.of(context).unfocus();
                           Get.to(const ChangePassword());
                         }),
                     MyButton(
+                        isLoading: AuthService.isUpdate ,
                         text: 'Save',
                         onPress: ()  async{
                           FocusScope.of(context).unfocus();

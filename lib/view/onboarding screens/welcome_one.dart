@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/view/onboarding%20screens/mysplash.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeOne extends StatelessWidget {
   const WelcomeOne({Key? key, required this.onPress}) : super(key: key);
@@ -22,7 +23,7 @@ class WelcomeOne extends StatelessWidget {
                 text:
                     'The product development process is structured in a way that considers the impacts that can be caused to the environment throughout their life cycle.'),
           ),
-          MyButton(text: 'Next', onPress: onPress)
+          MyButton(isLoading: false.obs,text: 'Next', onPress: onPress)
         ],
       ),
     );

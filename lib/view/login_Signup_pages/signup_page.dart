@@ -150,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
                         child: MyButton(
+                          isLoading: AuthService.isSignUp ,
                           text: 'Sign Up',
                           onPress: () async {
                             FocusScope.of(context).unfocus();

@@ -6,10 +6,13 @@ import 'package:get/get.dart' hide Response ;
 
 class AuthService {
 
-  static RxBool isBusy = false.obs;
+  static RxBool isLogin = false.obs;
+  static RxBool isSignUp = false.obs;
+  static RxBool isUpdate = false.obs;
+  static RxBool isChange = false.obs;
 
   static signIn({required String email, required String password}) async {
-    isBusy.value=true;
+    isLogin.value=true;
     try{
       Response response = await Dio()
           .post('http://10.0.2.2:8000/api/auth/signin',
@@ -33,12 +36,12 @@ class AuthService {
     }catch(e){
       Get.snackbar('Failed', "Incorrect email or password");
     }
-    isBusy.value=false;
+    isLogin.value=false;
   }
 
   static signUp({required String firstName,required String lastName,required String phoneNumber,required String address,required String email, required String password1,required String password2}) async {
+    isSignUp.value=true;
     try{
-      isBusy.value=true;
       Response response = await Dio()
           .post('http://10.0.2.2:8000/api/auth/signup',
         data:
@@ -66,14 +69,14 @@ class AuthService {
     }catch(e){
       Get.snackbar('Failed', "Account already registered!, sign in instead");
     }
-    isBusy.value=false;
+    isSignUp.value=false;
   }
 
   static updateProfile({required String firstName,required String lastName,required String phoneNumber,required String address}) async {
+    isUpdate.value=true;
     Dio dio = Dio();
     dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.token}";
     try{
-      isBusy.value=true;
       Response response = await dio
           .put('http://10.0.2.2:8000/api/auth/update',
         data:jsonEncode({
@@ -96,14 +99,14 @@ class AuthService {
     }catch(e){
       Get.snackbar('Failed', "Failed to update");
     }
-    isBusy.value=false;
+    isUpdate.value=false;
   }
 
   static changePassword({required String oldPass,required String newPass,required String confirmPass}) async {
+    isChange.value=true;
     Dio dio = Dio();
     dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.token}";
     try{
-      isBusy.value=true;
       Response response = await dio
           .post('http://10.0.2.2:8000/api/auth/change-password',
         data:jsonEncode({
@@ -116,6 +119,6 @@ class AuthService {
     }catch(e){
       Get.snackbar('Failed', "Failed to change password");
     }
-    isBusy.value=false;
+    isChange.value=false;
   }
 }

@@ -91,6 +91,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       }
                     },),
                   MyButton(
+                      isLoading: AuthService.isChange ,
                       text: r'Save Changes',
                       onPress: ()  {
                         FocusScope.of(context).unfocus();

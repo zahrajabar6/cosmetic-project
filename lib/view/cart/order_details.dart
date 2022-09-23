@@ -126,6 +126,7 @@ class OrderDetails extends StatelessWidget {
                     ]),
                   ),
                   MyButton(
+                      isLoading: false.obs ,
                       text: 'Place Order',
                       onPress: () {
                         if (Product.cart_products.isNotEmpty) {
