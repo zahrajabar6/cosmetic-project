@@ -89,7 +89,7 @@ class ProductTapThree extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      product.quantity += 1;
+                     //qantity += 1;
                     },
                     child: Container(
                       height: 25,
@@ -114,7 +114,7 @@ class ProductTapThree extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: Obx(() {
                       return Text(
-                        product.quantity.toString(),
+                        '0',//product.quantity.toString(),
                         style: TextStyle(
                             fontSize: 18,
                             color: grey,
@@ -124,13 +124,13 @@ class ProductTapThree extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      if (product.quantity > 1) {
-                        product.quantity -= 1;
-                      } else {
-                        product.quantity.value = 0;
-                        Product.cart_products.remove(product);
-                        Get.snackbar('Oops!', 'Product has been deleted');
-                      }
+                      // if (product.quantity > 1) {
+                      //   product.quantity -= 1;
+                      // } else {
+                      //   product.quantity.value = 0;
+                      //   Product.cart_products.remove(product);
+                      //   Get.snackbar('Oops!', 'Product has been deleted');
+                      // }
                     },
                     child: Container(
                       height: 25,

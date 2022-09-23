@@ -1,3 +1,5 @@
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
 class Account {
 
   //final String token;
@@ -11,11 +13,11 @@ class Account {
   Account( {
     required this.firstName,
     required this.lastname,
-     this.token,
-
+    this.token,
     required this.email,
-     this.phone,
-     this.address
+    this.phone,
+    this.address
 });
-  static late Account currentAccount;
+  //static late Account currentAccount;
+  static final currentAccount = Rxn<Account>();
 }

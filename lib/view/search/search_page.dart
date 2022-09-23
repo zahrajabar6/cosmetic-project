@@ -59,16 +59,16 @@ class _MySearchPageState extends State<MySearchPage> {
                 child: Obx(() {
                   return typed.isNotEmpty
                       ? ListView(
-                          children: Product.products
-                              .where((p) =>
-                                  p.product_name
-                                      .toLowerCase()
-                                      .contains(typed.toLowerCase()) ||
-                                  p.brand
-                                      .toLowerCase()
-                                      .contains(typed.toLowerCase()))
-                              .map((element) => ProductTapTwo(product: element))
-                              .toList(),
+                          // children: Product.products
+                          //     .where((p) =>
+                          //         p.product_name
+                          //             .toLowerCase()
+                          //             .contains(typed.toLowerCase()) ||
+                          //         p.brand
+                          //             .toLowerCase()
+                          //             .contains(typed.toLowerCase()))
+                          //     .map((element) => ProductTapTwo(product: element))
+                          //     .toList(),
                         )
                       : const Searching();
                 }),

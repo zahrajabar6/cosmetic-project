@@ -64,11 +64,11 @@ class ProductPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10), color: green),
               child: TextButton(
                 onPressed: () {
-                  if (Product.isOnCart(product)) {
-                    product.quantity += 1;
-                  } else {
-                    Product.cart_products.add(product);
-                  }
+                  // if (Product.isOnCart(product)) {
+                  //   product.quantity += 1;
+                  // } else {
+                  //   Product.cart_products.add(product);
+                  // }
                 },
                 child: Center(
                   child: Text(

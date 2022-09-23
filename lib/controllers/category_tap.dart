@@ -1,7 +1,9 @@
 import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/product_tap_one.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,42 +20,47 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        children: Product.categories
-            .map((e) => Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(child: MySubHeadingText(text: e)),
-                          TextButton(
-                              onPressed: () {
-                                Get.to(MyCategoryPage(
-                                  category: e,
-                                ));
-                              },
-                              child: Text(
-                                'See All',
-                                style: TextStyle(
-                                    color: green,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
-                              ))
-                        ],
-                      ),
-                      SizedBox(
-                        height: 200,
-                        child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: Product.products
-                                .where((p) => p.category == e)
-                                .map((element) =>
-                                    ProductTapOne(product: element))
-                                .toList()),
-                      )
-                    ])))
-            .toList(),
+        children: [Container(color: Colors.red,height: 100,),
+        MyButton(text: 'text', onPress: (){
+          ProductServices.productsList();
+        }, isLoading: false.obs)
+        ],
+        // children: Product.categories
+        //     .map((e) => Padding(
+        //         padding: const EdgeInsets.only(bottom: 20),
+        //         child: Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: [
+        //               Row(
+        //                 children: [
+        //                   Expanded(child: MySubHeadingText(text: e)),
+        //                   TextButton(
+        //                       onPressed: () {
+        //                         Get.to(MyCategoryPage(
+        //                           category: e,
+        //                         ));
+        //                       },
+        //                       child: Text(
+        //                         'See All',
+        //                         style: TextStyle(
+        //                             color: green,
+        //                             fontSize: 14,
+        //                             fontWeight: FontWeight.bold),
+        //                       ))
+        //                 ],
+        //               ),
+        //               SizedBox(
+        //                 height: 200,
+        //                 child: ListView(
+        //                     scrollDirection: Axis.horizontal,
+        //                     children: Product.products
+        //                         .where((p) => p.category == e)
+        //                         .map((element) =>
+        //                             ProductTapOne(product: element))
+        //                         .toList()),
+        //               )
+        //             ])))
+        //     .toList(),
       ),
     );
   }

@@ -113,7 +113,7 @@ class ProductDetails extends StatelessWidget {
                     fontSize: 18, color: grey, fontWeight: FontWeight.bold),
               ),
               Text(
-                product.ingrediant,
+                product.ingredient,
                 style: TextStyle(
                     fontSize: 16,
                     color: grey.withOpacity(0.70),

@@ -10,6 +10,7 @@ class AuthService {
   static RxBool isSignUp = false.obs;
   static RxBool isUpdate = false.obs;
   static RxBool isChange = false.obs;
+  static RxBool hasAccount = false.obs;
 
   static signIn({required String email, required String password}) async {
     isLogin.value=true;
@@ -24,14 +25,15 @@ class AuthService {
       );
       Map data = response.data["account"];
       String token = response.data["token"]["access"];
-      Account account = Account(firstName: data["first_name"],
+      Account? account = Account(firstName: data["first_name"],
           lastname: data["last_name"],
           email: data["email"],
           phone: data["phone_number"],
           address: data["address"],
           token: token
       );
-      Account.currentAccount = account;
+      Account.currentAccount.value = account;
+      hasAccount.value=true;
       Get.offAll(const MyPages());
     }catch(e){
       Get.snackbar('Failed', "Incorrect email or password");
@@ -57,14 +59,15 @@ class AuthService {
       );
       Map data = response.data["account"];
       String token = response.data['token']["access"];
-      Account account = Account(
+      Account? account = Account(
           token: token,
           firstName: data["first_name"],
           lastname: data["last_name"],
           email: data["email"],
           phone: data["phone_number"],
           address: data["address"]);
-      Account.currentAccount = account;
+      Account.currentAccount.value = account;
+      hasAccount.value=true;
       Get.offAll(const MyPages());
     }catch(e){
       Get.snackbar('Failed', "Account already registered!, sign in instead");
@@ -75,7 +78,7 @@ class AuthService {
   static updateProfile({required String firstName,required String lastName,required String phoneNumber,required String address}) async {
     isUpdate.value=true;
     Dio dio = Dio();
-    dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.token}";
+    dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
     try{
       Response response = await dio
           .put('http://10.0.2.2:8000/api/auth/update',
@@ -88,13 +91,14 @@ class AuthService {
       );
       Map data = response.data;
       Account account = Account(
-          token: Account.currentAccount.token,
+          token: Account.currentAccount.value!.token,
           firstName: data["first_name"],
           lastname: data["last_name"],
           email: data["email"],
           phone: data["phone_number"],
           address: data["address"]);
-      Account.currentAccount=account;
+      Account.currentAccount.value=account;
+      hasAccount.value=true;
       Get.snackbar('Done', 'Profile Updated Successfully');
     }catch(e){
       Get.snackbar('Failed', "Failed to update");
@@ -105,7 +109,7 @@ class AuthService {
   static changePassword({required String oldPass,required String newPass,required String confirmPass}) async {
     isChange.value=true;
     Dio dio = Dio();
-    dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.token}";
+    dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
     try{
       Response response = await dio
           .post('http://10.0.2.2:8000/api/auth/change-password',

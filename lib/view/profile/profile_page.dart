@@ -2,7 +2,9 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/models/account.dart';
+import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
+import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +44,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
+              child:AuthService.hasAccount.value? Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
@@ -59,30 +61,42 @@ class _MyProfilePageState extends State<MyProfilePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: MyTextField(
-                      icon: Icons.person,
-                      hint: '${Account.currentAccount.firstName} ${Account.currentAccount.lastname}',
+                    child: Obx((){
+                        return MyTextField(
+                          icon: Icons.person,
+                          hint: '${Account.currentAccount.value!.firstName} ${Account.currentAccount.value!.lastname}',
+                        );
+                      }
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: MyTextField(
-                      icon: Icons.email,
-                      hint: Account.currentAccount.email,
+                    child: Obx((){
+                        return MyTextField(
+                          icon: Icons.email,
+                          hint: Account.currentAccount.value!.email,
+                        );
+                      }
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: MyTextField(
-                      icon: Icons.phone,
-                      hint: Account.currentAccount.phone?? 'Phone Number',
+                    child: Obx(() {
+                        return MyTextField(
+                          icon: Icons.phone,
+                          hint: Account.currentAccount.value!.phone?? 'Phone Number',
+                        );
+                      }
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: MyTextField(
-                      icon: Icons.location_on,
-                      hint: Account.currentAccount.address ?? 'Address',
+                    child: Obx(() {
+                        return MyTextField(
+                          icon: Icons.location_on,
+                          hint: Account.currentAccount.value!.address ?? 'Address',
+                        );
+                      }
                     ),
                   ),
                   MyButton(
@@ -98,9 +112,18 @@ class _MyProfilePageState extends State<MyProfilePage> {
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setBool('showLogin', false);
                         Get.to(const MyLogin());
+                        AuthService.hasAccount.value=false;
                       })
                 ],
-              ),
+              ): Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text("You don't Have account?", style: TextStyle(color: grey, fontSize: 24),),
+                  ),
+                  SizedBox(width:150,
+                      child: MyButton(text: 'Register', onPress: (){Get.to(const RegisterPage());}, isLoading: false.obs))
+              ],),
             ),
           ),
         ),
