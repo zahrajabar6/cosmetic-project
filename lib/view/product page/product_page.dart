@@ -87,7 +87,12 @@ class ProductPage extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: Image(image: AssetImage(product.image_url)),
+              child: Center(
+                child: Image(
+                  image: NetworkImage(product.image_url),
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
             Expanded(
               flex: 1,

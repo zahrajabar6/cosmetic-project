@@ -1,7 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/product_tap_three.dart';
 import 'package:cosmetic_project/models/product_model.dart';
-import 'package:cosmetic_project/view/cart/dismissible.dart';
+import 'package:cosmetic_project/controllers/dismissible.dart';
 import 'package:cosmetic_project/view/cart/order_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +33,7 @@ class MyCartPage extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Obx(() {
+                child:Product.cart_products.isNotEmpty? Obx(() {
                   return ListView(
                     children: Product.cart_products
                         .map((element) => DismissibleWidget(
@@ -42,10 +42,9 @@ class MyCartPage extends StatelessWidget {
                               Get.snackbar('Oops!', 'Product has been deleted');
                             },
                             item: element,
-                            child: ProductTapThree(product: element)))
-                        .toList(),
-                  );
-                }),
+                            child: ProductTapThree(product: element)),
+                    ).toList(),);
+                }):Center(child: Text("Cart is Empty!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),)),
               ),
               const OrderDetails(),
             ],

@@ -3,10 +3,11 @@ import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
+import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
 
@@ -84,17 +85,25 @@ class _MyLoginState extends State<MyLogin> {
 
                             if (formKey.currentState!.validate()) {
                               AuthService.signIn(email: email, password: password);
+                              ProductServices.productsList();
                             }
                           },
                         ),
                       ),
-                      const MyTextButton(
+                       MyTextButton(
                         text: "Don't have account? Sign up",
-                        page: RegisterPage(),
+                        onPressed: (){
+                          FocusScope.of(context).unfocus();
+                          Get.to(const RegisterPage());
+                        },
                       ),
-                      const MyTextButton(
+                      MyTextButton(
                         text: "or Continue as a guest",
-                        page: MyPages(),
+                        onPressed: (){
+                          FocusScope.of(context).unfocus();
+                          Get.to(const MyPages());
+                          ProductServices.productsList();
+                        },
                       )
                     ]),
               ),

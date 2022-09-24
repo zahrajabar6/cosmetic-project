@@ -26,6 +26,9 @@ class MySearchField extends StatelessWidget {
         onChanged: (x) {
           typed.value = x;
         },
+        onSubmitted: (x){
+          FocusScope.of(context).unfocus();
+        },
         enableSuggestions: false,
         autocorrect: false,
         style: const TextStyle(fontSize: 20),

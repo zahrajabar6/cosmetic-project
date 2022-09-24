@@ -1,5 +1,4 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/controllers/search_field.dart';
 import 'package:cosmetic_project/models/product_model.dart';
@@ -59,16 +58,16 @@ class _MySearchPageState extends State<MySearchPage> {
                 child: Obx(() {
                   return typed.isNotEmpty
                       ? ListView(
-                          // children: Product.products
-                          //     .where((p) =>
-                          //         p.product_name
-                          //             .toLowerCase()
-                          //             .contains(typed.toLowerCase()) ||
-                          //         p.brand
-                          //             .toLowerCase()
-                          //             .contains(typed.toLowerCase()))
-                          //     .map((element) => ProductTapTwo(product: element))
-                          //     .toList(),
+                          children: Product.products
+                              .where((p) =>
+                                  p.product_name
+                                      .toLowerCase()
+                                      .contains(typed.toLowerCase()) ||
+                                  p.brand
+                                      .toLowerCase()
+                                      .contains(typed.toLowerCase()))
+                              .map((element) => ProductTapTwo(product: element))
+                              .toList(),
                         )
                       : const Searching();
                 }),

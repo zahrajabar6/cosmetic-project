@@ -50,9 +50,9 @@ class Product {
 
   static List categories = <String>[
     'Makeup',
-    'Skin Care',
-    'Hair Care',
-    'Body Care'
+    'Skin care',
+    //'Hair Care',
+    //'Body Care'
   ];
 }
 

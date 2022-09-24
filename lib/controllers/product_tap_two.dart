@@ -36,7 +36,7 @@ class ProductTapTwo extends StatelessWidget {
                   height: 80,
                   child: Center(
                     child: Image(
-                      image: AssetImage(product.image_url),
+                      image: NetworkImage(product.image_url),
                       fit: BoxFit.contain,
                     ),
                   ),

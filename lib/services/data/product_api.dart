@@ -9,19 +9,17 @@ class ProductServices{
       Response response = await Dio()
           .get('http://10.0.2.2:8000/api/Product/list-products',);
       List<dynamic> data = response.data;
-      print(data);
-      print(data.runtimeType);
-      for (var i in data) {
+      for (var item in data) {
         Product product= Product(
-            product_name: data[i]["name"],
-            brand: data[i]["brand"]["brand_name"],
-            category: data[i]["category"]["name"],
-            color: data[i]["color"],
-            description: data[i]["description"],
-            ingredient: data[i]["ingredient"],
-            price: data[i]["price"].toString(),
-            image_url: data[i]["imageUrl"]);
-        print(product);
+            product_name: item["name"],
+            brand: item["brand"]["brand_name"],
+            category: item["category"]["name"],
+            color: item["color"],
+            description: item["description"],
+            ingredient: item["ingredient"],
+            price: item["price"].toString(),
+            image_url: item["imageUrl"]);
+        Product.products.add(product);
       }
     }catch(e){
       print(e);

@@ -20,47 +20,42 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        children: [Container(color: Colors.red,height: 100,),
-        MyButton(text: 'text', onPress: (){
-          ProductServices.productsList();
-        }, isLoading: false.obs)
-        ],
-        // children: Product.categories
-        //     .map((e) => Padding(
-        //         padding: const EdgeInsets.only(bottom: 20),
-        //         child: Column(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               Row(
-        //                 children: [
-        //                   Expanded(child: MySubHeadingText(text: e)),
-        //                   TextButton(
-        //                       onPressed: () {
-        //                         Get.to(MyCategoryPage(
-        //                           category: e,
-        //                         ));
-        //                       },
-        //                       child: Text(
-        //                         'See All',
-        //                         style: TextStyle(
-        //                             color: green,
-        //                             fontSize: 14,
-        //                             fontWeight: FontWeight.bold),
-        //                       ))
-        //                 ],
-        //               ),
-        //               SizedBox(
-        //                 height: 200,
-        //                 child: ListView(
-        //                     scrollDirection: Axis.horizontal,
-        //                     children: Product.products
-        //                         .where((p) => p.category == e)
-        //                         .map((element) =>
-        //                             ProductTapOne(product: element))
-        //                         .toList()),
-        //               )
-        //             ])))
-        //     .toList(),
+        children: Product.categories
+            .map((e) => Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(child: MySubHeadingText(text: e)),
+                          TextButton(
+                              onPressed: () {
+                                Get.to(MyCategoryPage(
+                                  category: e,
+                                ));
+                              },
+                              child: Text(
+                                'See All',
+                                style: TextStyle(
+                                    color: green,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 200,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: Product.products
+                                .where((p) => p.category == e)
+                                .map((element) =>
+                                    ProductTapOne(product: element))
+                                .toList()),
+                      )
+                    ])))
+            .toList(),
       ),
     );
   }

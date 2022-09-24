@@ -6,19 +6,16 @@ class MyTextButton extends StatelessWidget {
   const MyTextButton({
     Key? key,
     required this.text,
-    required this.page,
+    this.onPressed,
   }) : super(key: key);
 
   final String text;
-  final Widget page;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {
-          FocusScope.of(context).unfocus();
-          Get.to(page);
-        },
+        onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(fontSize: 16, color: grey),

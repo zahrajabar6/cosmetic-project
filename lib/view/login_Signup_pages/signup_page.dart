@@ -2,9 +2,11 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
+import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../services/auth/auth.dart';
 
@@ -156,18 +158,25 @@ class _RegisterPageState extends State<RegisterPage> {
                             FocusScope.of(context).unfocus();
                             if (formKey.currentState!.validate()) {
                                AuthService.signUp(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address, email: email, password1: password1, password2: password2);
-
+                               ProductServices.productsList();
                             }
                           },
                         ),
                       ),
-                      const MyTextButton(
+                       MyTextButton(
                         text: "Already have account? Sign In",
-                        page: MyLogin(),
+                        onPressed: (){
+                          FocusScope.of(context).unfocus();
+                          Get.to(const MyLogin());
+                        },
                       ),
-                      const MyTextButton(
+                       MyTextButton(
                         text: "or Continue as a guest",
-                        page: MyPages(),
+                        onPressed: (){
+                          FocusScope.of(context).unfocus();
+                          Get.to(const MyPages());
+                          ProductServices.productsList();
+                        },
                       )
                     ]),
               ),

@@ -24,7 +24,6 @@ class ProductTapOne extends StatelessWidget {
           height: 200,
           width: 120,
           padding: const EdgeInsets.all(10),
-          //margin: const EdgeInsets.only(right: 10),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -33,11 +32,11 @@ class ProductTapOne extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                 SizedBox(
                   height: 80,
                   child: Center(
                     child: Image(
-                      image: AssetImage(product.image_url),
+                       image: NetworkImage(product.image_url),
                       fit: BoxFit.contain,
                     ),
                   ),

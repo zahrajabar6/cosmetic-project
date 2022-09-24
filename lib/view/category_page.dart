@@ -79,10 +79,10 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
               ),
               Expanded(
                 child: ListView(
-                  // children: Product.products
-                  //     .where((p) => p.category == widget.category)
-                  //     .map((element) => ProductTapTwo(product: element))
-                  //     .toList(),
+                  children: Product.products
+                      .where((p) => p.category == widget.category)
+                      .map((element) => ProductTapTwo(product: element))
+                      .toList(),
                 ),
               ),
             ],
