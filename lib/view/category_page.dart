@@ -2,6 +2,7 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_filtering.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+//import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,10 +17,11 @@ class MyCategoryPage extends StatefulWidget {
 }
 
 class _MyCategoryPageState extends State<MyCategoryPage> {
-  final List<String> filteringList = ["Price","Name"];
+  final List<String> filteringList = ['Default',"Price","Name"];
   final List<String> filteringItems = ['Default', 'Ascending', 'Descending'];
   String? firstSelectedItem;
   String? secondSelectedItem;
+  RxBool isFiltered = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -58,32 +60,49 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       MyFiltering(
+                        text: 'Filter On',
                         items: filteringList,
                         selectedItem: firstSelectedItem,
                         onChanged: (value) {
+                          isFiltered.value=true;
+                          Product.filter.clear();
                           setState(() {
                             firstSelectedItem = value;
                           });
+                          print(firstSelectedItem);
+                          //ProductServices.filtering(filterOn: firstSelectedItem??'Default', filterBy: secondSelectedItem??'Default');
                         },
                       ),
                       MyFiltering(
+                        text: 'Filter By',
                         items: filteringItems,
                         selectedItem: secondSelectedItem,
                         onChanged: (value) {
+                          isFiltered.value=true;
                           setState(() {
                             secondSelectedItem = value;
                           });
+                          Product.filter.clear();
+                          //ProductServices.filtering(filterOn: firstSelectedItem??'Default', filterBy: secondSelectedItem??'Default');
                         },
                       ),
                     ]),
               ),
               Expanded(
-                child: ListView(
+                child: !isFiltered.value? ListView(
                   children: Product.products
                       .where((p) => p.category == widget.category)
                       .map((element) => ProductTapTwo(product: element))
                       .toList(),
-                ),
+                ):Obx((){
+                    return ListView(
+                      children: Product.filter
+                          .where((p) => p.category == widget.category)
+                          .map((element) => ProductTapTwo(product: element))
+                          .toList(),
+                    );
+                  }
+                ) ,
               ),
             ],
           ),

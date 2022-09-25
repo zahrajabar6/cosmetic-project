@@ -29,6 +29,7 @@ class Product {
   static RxList<Product> fav_products = <Product>[].obs;
   static RxList<Product> cart_products = <Product>[].obs;
   static RxList<Product> products = <Product>[].obs;
+  static RxList<Product> filter = <Product>[].obs;
 
 
   static bool isOnCart(Product product) {

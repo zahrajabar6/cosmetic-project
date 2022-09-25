@@ -6,19 +6,20 @@ class MyFiltering extends StatefulWidget {
     Key? key,
     required this.items,
     this.selectedItem,
-    this.onChanged,
+    this.onChanged, required this.text,
   }) : super(key: key);
   final List<String> items;
   final String? selectedItem;
+  final String text;
   final Function(String?)? onChanged;
+
 
   @override
   State<MyFiltering> createState() => _MyFilteringState();
 }
 
 class _MyFilteringState extends State<MyFiltering> {
-  //final List<String> Items = ["Price", "Rate"];
-  //String? _selectedItem;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,8 +32,8 @@ class _MyFilteringState extends State<MyFiltering> {
       child: DropdownButton<String>(
         value: widget.selectedItem,
         onChanged: widget.onChanged,
-        hint: const Center(
-            child: Text('Filtering',
+        hint: Center(
+            child: Text(widget.text,
                 style: TextStyle(color: Colors.white, fontSize: 18))),
         // Hide the default underline
         underline: Container(),
