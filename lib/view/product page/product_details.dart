@@ -33,7 +33,7 @@ class ProductDetails extends StatelessWidget {
                 ),
               ),
               Text(
-                product.price,
+                '\$${product.price}',
                 style: TextStyle(
                     fontSize: 28, color: green, fontWeight: FontWeight.bold),
               )

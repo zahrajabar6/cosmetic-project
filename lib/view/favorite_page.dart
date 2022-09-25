@@ -2,6 +2,7 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/controllers/dismissible.dart';
+import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class MyFavoritePage extends StatelessWidget {
                                 .map((element) => DismissibleWidget(
                                 onDismissed: (direction) {
                                   Product.fav_products.remove(element);
+                                  ProductServices.removeFromFav(product: element);
                                   Get.snackbar('Oops!', 'Product has been deleted');
                                 },
                                 item: element,

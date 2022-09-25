@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 
 class Product {
+  final int productID;
   final String product_name;
   final String brand;
   final String category;
@@ -14,6 +15,7 @@ class Product {
 
 
   Product({
+      required this.productID,
       required this.product_name,
       required this.brand,
       required this.category,
@@ -21,22 +23,13 @@ class Product {
       required this.description,
       required this.ingredient,
       required this.price,
-      required this.image_url});
+      required this.image_url,
+  });
 
-
-  static RxList<Product> products = <Product>[].obs;
   static RxList<Product> fav_products = <Product>[].obs;
   static RxList<Product> cart_products = <Product>[].obs;
+  static RxList<Product> products = <Product>[].obs;
 
-  static bool isFavorite(Product product) {
-    bool isFav;
-    if (fav_products.contains(product)) {
-      isFav = true;
-    } else {
-      isFav = false;
-    }
-    return isFav;
-  }
 
   static bool isOnCart(Product product) {
     bool isOnCart;
@@ -50,7 +43,7 @@ class Product {
 
   static List categories = <String>[
     'Makeup',
-    'Skin care',
+    'Skin Care',
     //'Hair Care',
     //'Body Care'
   ];

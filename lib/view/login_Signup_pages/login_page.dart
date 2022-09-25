@@ -86,6 +86,7 @@ class _MyLoginState extends State<MyLogin> {
                             if (formKey.currentState!.validate()) {
                               AuthService.signIn(email: email, password: password);
                               ProductServices.productsList();
+                              ProductServices.favList();
                             }
                           },
                         ),
@@ -103,6 +104,7 @@ class _MyLoginState extends State<MyLogin> {
                           FocusScope.of(context).unfocus();
                           Get.to(const MyPages());
                           ProductServices.productsList();
+                          ProductServices.favList();
                         },
                       )
                     ]),

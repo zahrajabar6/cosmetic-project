@@ -16,10 +16,10 @@ class MyCategoryPage extends StatefulWidget {
 }
 
 class _MyCategoryPageState extends State<MyCategoryPage> {
-  final List<String> filteringList = ["Price", "Rate"];
+  final List<String> filteringList = ["Price","Name"];
   final List<String> filteringItems = ['Default', 'Ascending', 'Descending'];
-  String? firstselectedItem;
-  String? seconedselectedItem;
+  String? firstSelectedItem;
+  String? secondSelectedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -59,19 +59,19 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                     children: [
                       MyFiltering(
                         items: filteringList,
-                        selectedItem: firstselectedItem,
+                        selectedItem: firstSelectedItem,
                         onChanged: (value) {
                           setState(() {
-                            firstselectedItem = value;
+                            firstSelectedItem = value;
                           });
                         },
                       ),
                       MyFiltering(
                         items: filteringItems,
-                        selectedItem: seconedselectedItem,
+                        selectedItem: secondSelectedItem,
                         onChanged: (value) {
                           setState(() {
-                            seconedselectedItem = value;
+                            secondSelectedItem = value;
                           });
                         },
                       ),

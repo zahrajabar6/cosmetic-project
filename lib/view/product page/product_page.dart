@@ -1,17 +1,22 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:cosmetic_project/view/product%20page/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({Key? key, required this.product}) : super(key: key);
 
   final Product product;
-  //static RxBool isPressed = false.obs;
 
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,18 +44,20 @@ class ProductPage extends StatelessWidget {
           automaticallyImplyLeading: false,
           actions: [
             TextButton(onPressed: () {
-              if (Product.isFavorite(product)) {
-                Product.fav_products.remove(product);
+              if (Product.fav_products.contains(widget.product)) {
+                Product.fav_products.remove(widget.product);
+                ProductServices.removeFromFav(product: widget.product);
               } else {
-                Product.fav_products.add(product);
+                Product.fav_products.add(widget.product);
+                ProductServices.addAsFav(product: widget.product);
               }
             }, child: Obx(() {
               return Icon(
-                Product.isFavorite(product)
+                Product.fav_products.contains(widget.product)
                     ? Icons.favorite
                     : Icons.favorite_border,
                 size: 24,
-                color: Product.isFavorite(product) ? Colors.red : grey,
+                color: Product.fav_products.contains(widget.product) ? Colors.red : grey,
               );
             }))
           ],
@@ -89,7 +96,7 @@ class ProductPage extends StatelessWidget {
               flex: 1,
               child: Center(
                 child: Image(
-                  image: NetworkImage(product.image_url),
+                  image: NetworkImage(widget.product.image_url),
                   fit: BoxFit.contain,
                 ),
               ),
@@ -97,7 +104,7 @@ class ProductPage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: ProductDetails(
-                product: product,
+                product: widget.product,
               ),
             ),
           ],

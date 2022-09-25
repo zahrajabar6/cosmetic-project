@@ -65,7 +65,7 @@ class ProductTapTwo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      product.price,
+                      '\$${product.price}',
                       style: TextStyle(
                         fontSize: 14,
                         color: green,

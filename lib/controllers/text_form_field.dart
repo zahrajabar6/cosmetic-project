@@ -22,6 +22,9 @@ class MyTextFormField extends StatelessWidget {
         child: SizedBox(
           height: 50,
           child: TextFormField(
+            onFieldSubmitted:(x){
+        FocusScope.of(context).unfocus();
+        },
             onChanged: onChanged,
             obscureText: obsecure,
             textInputAction: TextInputAction.next,
