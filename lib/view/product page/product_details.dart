@@ -8,7 +8,7 @@ class ProductDetails extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final Product? product;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,13 @@ class ProductDetails extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  product.product_name,
+                  product!.product_name,
                   style: TextStyle(
                       fontSize: 30, color: grey, fontWeight: FontWeight.bold),
                 ),
               ),
               Text(
-                '\$${product.price}',
+                '\$${product!.price}',
                 style: TextStyle(
                     fontSize: 28, color: green, fontWeight: FontWeight.bold),
               )
@@ -43,7 +43,7 @@ class ProductDetails extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 15),
           child: Text(
-            product.brand,
+            product!.brand,
             style: TextStyle(
                 fontSize: 20,
                 color: grey.withOpacity(0.70),
@@ -71,7 +71,7 @@ class ProductDetails extends StatelessWidget {
                     fontSize: 18, color: grey, fontWeight: FontWeight.bold),
               ),
               Text(
-                product.color,
+                product!.color,
                 style: TextStyle(
                     fontSize: 16,
                     color: grey.withOpacity(0.70),
@@ -92,7 +92,7 @@ class ProductDetails extends StatelessWidget {
                     fontSize: 18, color: grey, fontWeight: FontWeight.bold),
               ),
               Text(
-                product.description,
+                product!.description,
                 style: TextStyle(
                     fontSize: 16,
                     color: grey.withOpacity(0.70),
@@ -113,7 +113,7 @@ class ProductDetails extends StatelessWidget {
                     fontSize: 18, color: grey, fontWeight: FontWeight.bold),
               ),
               Text(
-                product.ingredient,
+                product!.ingredient,
                 style: TextStyle(
                     fontSize: 16,
                     color: grey.withOpacity(0.70),

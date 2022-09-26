@@ -3,7 +3,6 @@ import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
-import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
@@ -82,11 +81,10 @@ class _MyLoginState extends State<MyLogin> {
                           text: 'Sign In',
                           onPress: () async {
                             FocusScope.of(context).unfocus();
-
+                            //Product.products.clear();
                             if (formKey.currentState!.validate()) {
                               AuthService.signIn(email: email, password: password);
-                              ProductServices.productsList();
-                              ProductServices.favList();
+                              //ProductServices.productsList();
                             }
                           },
                         ),
@@ -101,10 +99,10 @@ class _MyLoginState extends State<MyLogin> {
                       MyTextButton(
                         text: "or Continue as a guest",
                         onPressed: (){
+                          //Product.products.clear();
                           FocusScope.of(context).unfocus();
                           Get.to(const MyPages());
-                          ProductServices.productsList();
-                          ProductServices.favList();
+                          //ProductServices.productsList();
                         },
                       )
                     ]),

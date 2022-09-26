@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class ProductTapOne extends StatelessWidget {
   const ProductTapOne({Key? key, required this.product}) : super(key: key);
 
-  final Product product;
+  final Product? product;
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,13 @@ class ProductTapOne extends StatelessWidget {
                   height: 80,
                   child: Center(
                     child: Image(
-                       image: NetworkImage(product.image_url),
+                       image: NetworkImage(product!.image_url),
                       fit: BoxFit.contain,
                     ),
                   ),
                 ),
                 Text(
-                  product.product_name,
+                  product!.product_name,
                   style: TextStyle(
                     fontSize: 16,
                     color: grey,
@@ -50,7 +50,7 @@ class ProductTapOne extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  product.brand,
+                  product!.brand,
                   style: TextStyle(
                     fontSize: 14,
                     color: grey.withOpacity(0.50),
@@ -58,7 +58,7 @@ class ProductTapOne extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\$${product.price}',
+                  '\$${product!.price}',
                   style: TextStyle(
                     fontSize: 14,
                     color: green,

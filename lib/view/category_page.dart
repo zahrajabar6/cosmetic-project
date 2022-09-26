@@ -2,6 +2,8 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_filtering.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/product/product_controller.dart';
+import 'package:cosmetic_project/services/product/product_repository.dart';
 //import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,8 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    //dependency injections
+    var productController = ProductController(ProductRepository());
     return SafeArea(
       child: Scaffold(
         extendBody: true,
@@ -89,21 +93,22 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
                     ]),
               ),
               Expanded(
-                child: !isFiltered.value? ListView(
-                  children: Product.products
-                      .where((p) => p.category == widget.category)
-                      .map((element) => ProductTapTwo(product: element))
-                      .toList(),
-                ):Obx((){
-                    return ListView(
-                      children: Product.filter
-                          .where((p) => p.category == widget.category)
-                          .map((element) => ProductTapTwo(product: element))
-                          .toList(),
+                child: FutureBuilder<List<Product>>(
+                  future: productController.fetchProductsList(),
+                  builder: (context,snapshot){
+                    if(snapshot.connectionState == ConnectionState.waiting){
+                      return Center(child:CircularProgressIndicator(color: green));
+                    }
+                    return ListView.builder(
+                      itemBuilder: (context,index){
+                        var product = snapshot.data?[index];
+                        if(product!.category ==widget.category){return ProductTapTwo(product: product);}else{return Container();}
+                      },
+                      itemCount: snapshot.data?.length ?? 0,
                     );
-                  }
+                  },
+                ),
                 ) ,
-              ),
             ],
           ),
         ),

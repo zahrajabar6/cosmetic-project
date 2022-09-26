@@ -26,28 +26,31 @@ class Product {
       required this.image_url,
   });
 
-  static RxList<Product> fav_products = <Product>[].obs;
-  static RxList<Product> cart_products = <Product>[].obs;
-  static RxList<Product> products = <Product>[].obs;
-  static RxList<Product> filter = <Product>[].obs;
-
-
-  static bool isOnCart(Product product) {
-    bool isOnCart;
-    if (cart_products.contains(product)) {
-      isOnCart = true;
-    } else {
-      isOnCart = false;
-    }
-    return isOnCart;
-  }
-
   static List categories = <String>[
     'Makeup',
     'Skin Care',
     //'Hair Care',
     //'Body Care'
   ];
+
+
+  static RxList<Product> fav_products = <Product>[].obs;
+  static RxList<Product> cart_products = <Product>[].obs;
+  static RxList<Product> products = <Product>[].obs;
+  static RxList<Product> filter = <Product>[].obs;
+
+
+  // static bool isOnCart(Product product) {
+  //   bool isOnCart;
+  //   if (cart_products.contains(product)) {
+  //     isOnCart = true;
+  //   } else {
+  //     isOnCart = false;
+  //   }
+  //   return isOnCart;
+  // }
+
+
 }
 
 

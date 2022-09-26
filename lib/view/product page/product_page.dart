@@ -1,6 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/models/product_model.dart';
-import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:cosmetic_project/view/product%20page/product_details.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ import 'package:get/get.dart';
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key, required this.product}) : super(key: key);
 
-  final Product product;
+  final Product? product;
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -45,11 +44,11 @@ class _ProductPageState extends State<ProductPage> {
           actions: [
             TextButton(onPressed: () {
               if (Product.fav_products.contains(widget.product)) {
-                Product.fav_products.remove(widget.product);
-                ProductServices.removeFromFav(product: widget.product);
+                //Product.fav_products.remove(widget.product);
+                //ProductServices.removeFromFav(product: widget.product);
               } else {
-                Product.fav_products.add(widget.product);
-                ProductServices.addAsFav(product: widget.product);
+                //Product.fav_products.add(widget.product);
+                //ProductServices.addAsFav(product: widget.product);
               }
             }, child: Obx(() {
               return Icon(
@@ -96,7 +95,7 @@ class _ProductPageState extends State<ProductPage> {
               flex: 1,
               child: Center(
                 child: Image(
-                  image: NetworkImage(widget.product.image_url),
+                  image: NetworkImage(widget.product!.image_url),
                   fit: BoxFit.contain,
                 ),
               ),

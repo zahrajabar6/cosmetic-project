@@ -2,7 +2,6 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
-import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
@@ -155,10 +154,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           isLoading: AuthService.isSignUp ,
                           text: 'Sign Up',
                           onPress: () async {
+                            //Product.products.clear();
                             FocusScope.of(context).unfocus();
                             if (formKey.currentState!.validate()) {
                                AuthService.signUp(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address, email: email, password1: password1, password2: password2);
-                               ProductServices.productsList();
+                               //ProductServices.productsList();
                             }
                           },
                         ),
@@ -173,9 +173,10 @@ class _RegisterPageState extends State<RegisterPage> {
                        MyTextButton(
                         text: "or Continue as a guest",
                         onPressed: (){
+                          //Product.products.clear();
                           FocusScope.of(context).unfocus();
                           Get.to(const MyPages());
-                          ProductServices.productsList();
+                          //ProductServices.productsList();
                         },
                       )
                     ]),
