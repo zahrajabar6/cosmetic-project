@@ -1,5 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/product/product_controller.dart';
+import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:cosmetic_project/view/product%20page/product_details.dart';
 import 'package:flutter/material.dart';
@@ -43,22 +45,17 @@ class _ProductPageState extends State<ProductPage> {
           automaticallyImplyLeading: false,
           actions: [
             TextButton(onPressed: () {
-              if (Product.fav_products.contains(widget.product)) {
-                //Product.fav_products.remove(widget.product);
-                //ProductServices.removeFromFav(product: widget.product);
-              } else {
-                //Product.fav_products.add(widget.product);
-                //ProductServices.addAsFav(product: widget.product);
-              }
-            }, child: Obx(() {
-              return Icon(
-                Product.fav_products.contains(widget.product)
-                    ? Icons.favorite
-                    : Icons.favorite_border,
-                size: 24,
-                color: Product.fav_products.contains(widget.product) ? Colors.red : grey,
-              );
-            }))
+              //dependency injections
+              var productController = ProductController(ProductRepository());
+              productController.addToFavList(widget.product);
+            }, child: Icon(
+                //Product.isFav.value
+                   /* ?*/ Icons.favorite
+                    //: Icons.favorite_border,
+                , size: 24,
+                color: /*Product.isFav.value ? Colors.red :*/ grey,
+              )
+            )
           ],
         ),
         floatingActionButton: Padding(

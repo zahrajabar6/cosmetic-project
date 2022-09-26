@@ -73,11 +73,3 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
     );
   }
 }
-
-// ListView(
-// scrollDirection: Axis.horizontal,
-// children: Product.products
-//     .where((p) => p.category == e)
-// .map((element) =>
-// ProductTapOne(product: element))
-// .toList()),

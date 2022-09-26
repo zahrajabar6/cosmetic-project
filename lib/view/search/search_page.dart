@@ -2,6 +2,8 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/controllers/search_field.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/product/product_controller.dart';
+import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:cosmetic_project/view/search/searching.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,8 @@ class MySearchPage extends StatefulWidget {
 }
 
 class _MySearchPageState extends State<MySearchPage> {
+  //dependency injections
+  var productController = ProductController(ProductRepository());
   final TextEditingController myController = TextEditingController();
   RxString typed = ''.obs;
   @override
@@ -57,19 +61,22 @@ class _MySearchPageState extends State<MySearchPage> {
               Expanded(
                 child: Obx(() {
                   return typed.isNotEmpty
-                      ? ListView(
-                          children: Product.products
-                              .where((p) =>
-                                  p.product_name
-                                      .toLowerCase()
-                                      .contains(typed.toLowerCase()) ||
-                                  p.brand
-                                      .toLowerCase()
-                                      .contains(typed.toLowerCase()))
-                              .map((element) => ProductTapTwo(product: element))
-                              .toList(),
-                        )
-                      : const Searching();
+                      ? FutureBuilder<List<Product>>(
+                      future: productController.fetchSearchResult(typed),
+                      builder: (context,snapshot){
+                      if(snapshot.connectionState == ConnectionState.waiting){
+                        return Center(child:CircularProgressIndicator(color: green));
+                      }
+                      return ListView.builder(
+                          itemBuilder: (context,index){
+                          var product = snapshot.data?[index];
+                          return ProductTapTwo(product: product);
+                        },
+                        itemCount: snapshot.data?.length ?? 0,
+                      );
+                    },
+                  )
+                  : const Searching();
                 }),
               )
             ],
@@ -79,3 +86,16 @@ class _MySearchPageState extends State<MySearchPage> {
     );
   }
 }
+
+// ListView(
+// children: Product.products
+//     .where((p) =>
+// p.product_name
+//     .toLowerCase()
+// .contains(typed.toLowerCase()) ||
+// p.brand
+//     .toLowerCase()
+// .contains(typed.toLowerCase()))
+// .map((element) => ProductTapTwo(product: element))
+// .toList(),
+// )
