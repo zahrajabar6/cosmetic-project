@@ -115,6 +115,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                         //Product.products.clear();
                         Get.to(const MyLogin());
                         AuthService.hasAccount.value=false;
+                        Account.currentAccount.value=null;
                       })
                 ],
               ): Column(mainAxisAlignment: MainAxisAlignment.center,
