@@ -1,4 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/services/product/product_controller.dart';
 import 'package:cosmetic_project/services/product/product_repository.dart';
@@ -20,6 +21,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
+    //dependency injection
+    var productController=ProductController(ProductRepository());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -46,8 +49,8 @@ class _ProductPageState extends State<ProductPage> {
           actions: [
             TextButton(onPressed: () {
               //dependency injections
-              var productController = ProductController(ProductRepository());
-              productController.addToFavList(widget.product);
+              // var productController = ProductController(ProductRepository());
+              // productController.addToFavList(widget.product);
             }, child: Icon(
                 //Product.isFav.value
                    /* ?*/ Icons.favorite
@@ -65,25 +68,14 @@ class _ProductPageState extends State<ProductPage> {
               width: double.maxFinite,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: green),
-              child: TextButton(
-                onPressed: () {
-                  // if (Product.isOnCart(product)) {
-                  //   product.quantity += 1;
-                  // } else {
-                  //   Product.cart_products.add(product);
-                  // }
-                },
-                child: Center(
-                  child: Text(
-                    'Add to cart',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        color: light_green),
-                  ),
-                ),
+              child:MyButton(
+                isLoading: ProductRepository.isAdding,
+                text: 'Add to cart',
+                onPress: () async {
+                    productController.addToCart(widget.product);
+                  }
               ),
+
             )),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Column(

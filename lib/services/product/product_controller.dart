@@ -1,3 +1,4 @@
+import 'package:cosmetic_project/models/cart_model.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/services/product/repository.dart';
 import 'package:get/get.dart';
@@ -5,8 +6,6 @@ import 'package:get/get.dart';
 class ProductController{
   final Repository _repository;
   ProductController(this._repository);
-
-  //Product product;
 
   //get all product
   Future<List<Product>> fetchProductsList() async {
@@ -23,15 +22,39 @@ class ProductController{
     return _repository.getFavList();
   }
 
-  //add to favorite
-  Future addToFavList(Product? product) async {
-    return _repository.postToFav(product);
+  // //add to favorite
+  // Future addToFavList(Product? product) async {
+  //   return _repository.postToFav(product);
+  // }
+  //
+  // //remove from favorite
+  // Future removeFromFav(Product? product) async {
+  //   return _repository.delFromFav(product);
+  // }
+
+  //get Cart list
+  Future<List<Cart>> fetchCartList() async {
+    return _repository.getCartList();
   }
 
-  //remove from favorite
-  Future removeFromFav(Product? product) async {
-    return _repository.delFromFav(product);
+  //add to Cart
+  Future addToCart(Product? product) async{
+    return _repository.postToCart(product);
   }
 
+  //delete from Cart
+  Future deleteFromCart(Cart? cartItem) async{
+    return _repository.postfromCart(cartItem);
+  }
+
+  //increase item quantity in cart
+  Future increaseQuantity(Cart? cartItem) async{
+    return _repository.increaseQuantity(cartItem);
+  }
+
+  //decrease item quantity in cart
+  Future decreaseQuantity(Cart? cartItem) async{
+    return _repository.decreaseQuantity(cartItem);
+  }
 
 }

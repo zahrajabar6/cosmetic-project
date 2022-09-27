@@ -33,9 +33,7 @@ class Product {
     //'Body Care'
   ];
 
-  static RxList<Product> fav_products = <Product>[].obs;
   static RxList<Product> cart_products = <Product>[].obs;
-  static RxList<Product> products = <Product>[].obs;
   static RxList<Product> filter = <Product>[].obs;
 
 }

@@ -1,24 +1,33 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/models/cart_model.dart';
+import 'package:cosmetic_project/services/product/product_controller.dart';
+import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:cosmetic_project/view/product%20page/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductTapThree extends StatelessWidget {
-  const ProductTapThree({Key? key, required this.product}) : super(key: key);
+class ProductTapThree extends StatefulWidget {
+  const ProductTapThree({Key? key, required this.item}) : super(key: key);
 
-  final Product? product;
+  final Cart? item;
 
   @override
+  State<ProductTapThree> createState() => _ProductTapThreeState();
+}
+
+class _ProductTapThreeState extends State<ProductTapThree> {
+  @override
   Widget build(BuildContext context) {
+    //dependency injection
+    var productController=ProductController(ProductRepository());
     return TextButton(
       onPressed: () {
         Get.to(ProductPage(
-          product: product,
+          product: widget.item!.product,
         ));
       },
       child: Container(
-        height: 160,
+        height: 150,
         width: double.maxFinite,
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.only(bottom: 10),
@@ -36,7 +45,7 @@ class ProductTapThree extends StatelessWidget {
                   height: 80,
                   child: Center(
                     child: Image(
-                        image: NetworkImage(product!.image_url),
+                        image: NetworkImage(widget.item!.product.image_url),
                         fit: BoxFit.contain,
                     ),
                   ),
@@ -49,7 +58,7 @@ class ProductTapThree extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product!.product_name,
+                      widget.item!.product.product_name,
                       style: TextStyle(
                         fontSize: 16,
                         color: grey,
@@ -57,7 +66,7 @@ class ProductTapThree extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      product!.brand,
+                      widget.item!.product.brand,
                       style: TextStyle(
                         fontSize: 14,
                         color: grey.withOpacity(0.50),
@@ -65,7 +74,7 @@ class ProductTapThree extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${product!.price}',
+                      '\$${widget.item!.product.price}',
                       style: TextStyle(
                         fontSize: 14,
                         color: green,
@@ -85,11 +94,11 @@ class ProductTapThree extends StatelessWidget {
                 ),
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
                     onPressed: () {
-                     //qantity += 1;
+                      productController.increaseQuantity(widget.item);
                     },
                     child: Container(
                       height: 25,
@@ -110,27 +119,16 @@ class ProductTapThree extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Obx(() {
-                      return Text(
-                        '0',//product.quantity.toString(),
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: grey,
-                            fontWeight: FontWeight.bold),
-                      );
-                    }),
-                  ),
+                  Text(
+                    widget.item!.quantity.toString(),//product.quantity.toString(),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: grey,
+                        fontWeight: FontWeight.bold),
+                     ),
                   TextButton(
                     onPressed: () {
-                      // if (product.quantity > 1) {
-                      //   product.quantity -= 1;
-                      // } else {
-                      //   product.quantity.value = 0;
-                      //   Product.cart_products.remove(product);
-                      //   Get.snackbar('Oops!', 'Product has been deleted');
-                      // }
+                      productController.decreaseQuantity(widget.item);
                     },
                     child: Container(
                       height: 25,

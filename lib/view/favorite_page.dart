@@ -56,8 +56,6 @@ class MyFavoritePage extends StatelessWidget {
                               var product = snapshot.data?[index];
                               return DismissibleWidget(
                                 onDismissed: (direction){
-                                  //Product.fav_products.remove(element);
-                                  //ProductServices.removeFromFav(product: element);
                                   Get.snackbar('Oops!', 'Product has been deleted');
                                 },
                                 item: product,
