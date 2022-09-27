@@ -68,38 +68,35 @@ class ProductRepository implements Repository{
     return favList;
   }
 
-  // //add product to favorite
-  // @override
-  // Future postToFav(Product? product) async{
-  //   int productID = product!.productID;
-  //   //print(productID);
-  //   String url = '$baseURL/Product/add_favorite?product_id=$productID';
-  //   //print(url);
-  //   Dio dio = Dio();
-  //   dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
-  //   try {
-  //     Response response=await dio.post(url);
-  //     //print(response);
-  //   } catch (e) {
-  //     //print(e);
-  //   }
-  // }
+  //add product to favorite
+  @override
+  Future postToFav(Product? product) async{
+    int productID = product!.productID;
+    String url = '$baseURL/Product/add_favorite?product_id=$productID';
+    try {
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      await dio.post(url);
+    } catch (e) {
+      //catch error
+    }
+  }
 
-  // @override
-  // Future delFromFav(Product? product) async{
-  //   int productID = product!.productID;
-  //   //print(productID);
-  //   String url = '$baseURL/Product/Remove_favorite?product_id=$productID';
-  //   Dio dio = Dio();
-  //   dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
-  //   try {
-  //     Response response = await dio.put(url);
-  //     //print(response);
-  //   } catch (e) {
-  //     //print(e);
-  //   }
-  // }
+  //delete from favorite
+  @override
+  Future delFromFav(Product? product) async{
+    int productID = product!.productID;
+    String url = '$baseURL/Product/Remove_favorite?product_id=$productID';
+    try {
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      await dio.delete(url);
+    } catch (e){
+      //catch error
+    }
+  }
 
+  //search
   @override
   Future<List<Product>> getSearch(RxString typed) async{
     List<Product> searchedProducts=[];
@@ -226,4 +223,77 @@ class ProductRepository implements Repository{
       Get.snackbar('Failed', 'Check your connection');
     }
   }
+
+  //Create order
+  @override
+  Future createOrder() async{
+    String url = '$baseURL/Order/create_order';
+    print(url);
+    try {
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      Response response = await dio.post(url);
+      print(response);
+    } catch (e){
+      print(e);
+      //catch error
+    }
+  }
+
+  //Check out order
+  @override
+  Future checkOutOrder() async{
+    String url = '$baseURL/Order/checkout';
+    print(url);
+    try {
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      Response response =await dio.post(url);
+      print(response);
+    } catch (e){
+      print(e);
+      //catch error
+    }
+  }
+
+  //set rate to product
+  @override
+  Future postRate(Product? product, double rate) async{
+    String url = '$baseURL/Rate/Set_rate';
+    int productID = product!.productID;
+    try{
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      Response response = await dio.post(url,
+        data: jsonEncode({
+          "product_id": productID,
+          "rate": rate
+        }),
+      );
+      Get.snackbar('Done', response.data['detail']);
+    }catch(e){
+      Get.snackbar('Failed', 'Check your connection');
+    }
+  }
+
+  //get average rate of product
+  @override
+  Future<double> getAvgRate(Product? product) async{
+    int productID = product!.productID;
+    String url = '$baseURL/Rate/Product_avg_rate?product_id=$productID';
+    double totalRate=0;
+    try{
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      Response response = await dio.get(url);
+      totalRate=response.data["rate"];
+      print(totalRate);
+      Get.snackbar('Done', response.data['detail']);
+    }catch(e){
+      print(e);
+    }
+    return totalRate;
+  }
+
+
 }

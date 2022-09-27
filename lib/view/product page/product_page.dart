@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key, required this.product}) : super(key: key);
+   const ProductPage({Key? key, required this.product}) : super(key: key);
 
   final Product? product;
 
@@ -48,16 +48,13 @@ class _ProductPageState extends State<ProductPage> {
           automaticallyImplyLeading: false,
           actions: [
             TextButton(onPressed: () {
-              //dependency injections
-              // var productController = ProductController(ProductRepository());
-              // productController.addToFavList(widget.product);
-            }, child: Icon(
-                //Product.isFav.value
-                   /* ?*/ Icons.favorite
-                    //: Icons.favorite_border,
-                , size: 24,
-                color: /*Product.isFav.value ? Colors.red :*/ grey,
-              )
+              productController.addToFavList(widget.product);
+            },
+              child: Icon(
+                    Icons.favorite, //: Icons.favorite_border,
+                    size: 24,
+                    color: grey,
+                  )
             )
           ],
         ),

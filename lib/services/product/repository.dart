@@ -12,11 +12,11 @@ abstract class Repository{
   //get favorite list
   Future<List<Product>> getFavList();
 
-  // //add to fav
-  // Future postToFav(Product? product);
-  //
-  // //delete from fav -- using PUT --
-  // Future delFromFav(Product? product);
+  //add to fav
+  Future postToFav(Product? product);
+
+  //delete from fav
+  Future delFromFav(Product? product);
 
   //get cart list
   Future<List<Cart>> getCartList();
@@ -32,5 +32,17 @@ abstract class Repository{
 
   //decrease item quantity in cart
   Future decreaseQuantity(Cart? cartItem);
+
+  //Create order
+  Future createOrder();
+
+  //Check out order
+  Future checkOutOrder();
+
+  //set rate to product
+  Future postRate(Product? product, double rate);
+
+  //get average rate of product
+  Future<double> getAvgRate(Product? product);
 
 }

@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
-import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/product/product_controller.dart';
+import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,9 @@ class OrderDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //dependency injection
+    var productController=ProductController(ProductRepository());
+
     return DraggableScrollableSheet(
         initialChildSize: 0.12,
         minChildSize: 0.12,
@@ -129,10 +133,10 @@ class OrderDetails extends StatelessWidget {
                       isLoading: false.obs ,
                       text: 'Place Order',
                       onPress: () {
-                        if (Product.cart_products.isNotEmpty) {
-                          Product.cart_products.clear();
+                          //productController.createOrder();
+                          //productController.checkOutOrder();
                           Get.snackbar('Done!', 'Your order is coming..');
-                        }
+
                       })
                 ],
               ),

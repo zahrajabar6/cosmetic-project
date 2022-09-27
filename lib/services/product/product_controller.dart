@@ -22,15 +22,15 @@ class ProductController{
     return _repository.getFavList();
   }
 
-  // //add to favorite
-  // Future addToFavList(Product? product) async {
-  //   return _repository.postToFav(product);
-  // }
-  //
-  // //remove from favorite
-  // Future removeFromFav(Product? product) async {
-  //   return _repository.delFromFav(product);
-  // }
+  //add to favorite
+  Future addToFavList(Product? product) async {
+    return _repository.postToFav(product);
+  }
+
+  //remove from favorite
+  Future removeFromFav(Product? product) async {
+    return _repository.delFromFav(product);
+  }
 
   //get Cart list
   Future<List<Cart>> fetchCartList() async {
@@ -55,6 +55,26 @@ class ProductController{
   //decrease item quantity in cart
   Future decreaseQuantity(Cart? cartItem) async{
     return _repository.decreaseQuantity(cartItem);
+  }
+
+  //create order
+  Future createOrder() async{
+    return _repository.createOrder();
+  }
+
+  //check out order
+  Future checkOutOrder() async{
+    return _repository.checkOutOrder();
+  }
+
+  //set rate to product
+  Future Rate(Product? product, double rate) async{
+    return _repository.postRate(product, rate);
+  }
+
+  //get average rate of product
+  Future<double> getAvgRate(Product? product) async{
+    return _repository.getAvgRate(product);
   }
 
 }

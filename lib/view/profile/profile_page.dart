@@ -2,7 +2,6 @@ import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/models/account.dart';
-import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
@@ -112,7 +111,6 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       onPress: () async {
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setBool('showLogin', false);
-                        //Product.products.clear();
                         Get.to(const MyLogin());
                         AuthService.hasAccount.value=false;
                         Account.currentAccount.value=null;

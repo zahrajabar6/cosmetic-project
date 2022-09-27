@@ -1,3 +1,4 @@
+import 'package:cosmetic_project/view/product%20page/rating_product.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/splashpages/logopage.dart';
 import 'package:flutter/material.dart';

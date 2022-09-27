@@ -1,4 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/view/product%20page/rating_product.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -29,13 +30,13 @@ class ProductDetails extends StatelessWidget {
                 child: Text(
                   product!.product_name,
                   style: TextStyle(
-                      fontSize: 30, color: grey, fontWeight: FontWeight.bold),
+                      fontSize: 25, color: grey, fontWeight: FontWeight.bold),
                 ),
               ),
               Text(
                 '\$${product!.price}',
                 style: TextStyle(
-                    fontSize: 28, color: green, fontWeight: FontWeight.bold),
+                    fontSize: 22, color: green, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -50,17 +51,32 @@ class ProductDetails extends StatelessWidget {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-            for (var i = 0; i < 4; i++)
-              const Padding(
-                padding: EdgeInsets.only(right: 2),
-                child: Icon(Icons.star, size: 20, color: Colors.orange),
-              ),
-            const Icon(Icons.star, size: 20, color: Colors.grey),
-          ]),
-        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text('Tap to Rate:',style: TextStyle(color: grey.withOpacity(0.70),fontSize: 16)),
+                ),
+                Padding(
+                    padding:const EdgeInsets.only(bottom: 15),
+                    child: Rating(size: 25,product: product,)
+                ),
+              ],
+            ),
+          ),
+          // Column(
+          //   children: [
+          //     Text('4.5', style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold,color: grey)),
+          //     Text('out of 5', style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: grey)),
+          //
+          //   ],
+          // )
+        ],),
         Padding(
           padding: const EdgeInsets.only(bottom: 15),
           child: Row(
