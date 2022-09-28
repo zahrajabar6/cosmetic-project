@@ -1,4 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/services/auth/localdb.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/onboarding%20screens/welcome_one.dart';
 import 'package:cosmetic_project/view/onboarding%20screens/welcome_two.dart';
@@ -37,8 +38,8 @@ class _OnboardingState extends State<Onboarding> {
           }),
           WelcomeTwo(
             onPress: () async {
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setBool('showLogin', true);
+              DB.prefs = await SharedPreferences.getInstance();
+              DB.prefs.setBool('showLogin', true);
               Get.to(const MyLogin());
             },
           )

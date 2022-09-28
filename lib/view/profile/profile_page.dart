@@ -3,13 +3,13 @@ import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/my_text_field.dart';
 import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
+import 'package:cosmetic_project/services/auth/localdb.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProfilePage extends StatefulWidget {
   const MyProfilePage({Key? key}) : super(key: key);
@@ -109,11 +109,12 @@ class _MyProfilePageState extends State<MyProfilePage> {
                       isLoading: false.obs,
                       text: 'Log Out',
                       onPress: () async {
-                        final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool('showLogin', false);
-                        Get.to(const MyLogin());
+                        DB.prefs.remove('email');
+                        DB.prefs.remove('password');
+                        DB.prefs.setBool('showLogin', false);
                         AuthService.hasAccount.value=false;
                         Account.currentAccount.value= Account(firstName: "firstName", lastname: "lastname", email: "email",token: '',address:'address',phone: 'phone' );
+                        Get.to(const MyLogin());
                       })
                 ],
               ): Column(mainAxisAlignment: MainAxisAlignment.center,

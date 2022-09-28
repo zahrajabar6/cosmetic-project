@@ -1,5 +1,5 @@
-import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
-import 'package:cosmetic_project/view/splashpages/logopage.dart';
+import 'package:cosmetic_project/services/auth/localdb.dart';
+import 'package:cosmetic_project/view/wrapper_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,14 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  final showLogin = prefs.getBool('showLogin') ?? false;
-  runApp(MyApp(showLogin: showLogin));
+  DB.prefs = await SharedPreferences.getInstance();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool showLogin;
-  const MyApp({Key? key, required this.showLogin}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -35,6 +33,6 @@ class MyApp extends StatelessWidget {
             ),
           );
         },
-        child: showLogin ? const MyLogin() : const MyLogoPage());
+        child:const LoadingScreen());
   }
 }

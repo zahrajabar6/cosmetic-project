@@ -1,25 +1,37 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/view/splashpages/delay.dart';
+import 'package:cosmetic_project/services/auth/auth.dart';
+import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
+import 'package:cosmetic_project/view/onboarding%20screens/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:cosmetic_project/services/auth/localdb.dart';
+import 'package:get/get.dart';
 
-class MyLogoPage extends StatefulWidget {
-  const MyLogoPage({Key? key}) : super(key: key);
+class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({Key? key}) : super(key: key);
 
-  @override
-  State<MyLogoPage> createState() => _MyLogoPageState();
-}
+  login() async{
+    await Future.delayed(Duration(seconds: 4));
+    try{
+      String? email = DB.prefs.getString('email');
+      String? password = DB.prefs.getString('password');
 
-class _MyLogoPageState extends State<MyLogoPage> {
-  @override
-  void initState() {
-    // ignore: todo
-    //TODO: implement initState
-    super.initState();
-    startTime();
+      if(email != null && password != null){
+        AuthService.signIn(email: email, password: password);
+      }else{
+        bool? showLogin = DB.prefs.getBool('showLogin');
+        if(showLogin != null && showLogin){
+         Get.to(MyLogin());
+        }else{
+          Get.to(Onboarding());
+        }
+      }
+    }catch(e){
+      Get.to(Onboarding());
+    }
   }
-
   @override
   Widget build(BuildContext context) {
+    login();
     return Scaffold(
       backgroundColor: background_color,
       body: Center(
@@ -39,7 +51,7 @@ class _MyLogoPageState extends State<MyLogoPage> {
                 child: Text(
                   'Pure Beauty',
                   style:
-                      TextStyle(color: grey, fontSize: 60, fontFamily: 'Ole'),
+                  TextStyle(color: grey, fontSize: 60, fontFamily: 'Ole'),
                 ),
               ),
               SizedBox(

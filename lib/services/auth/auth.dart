@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cosmetic_project/models/account.dart';
+import 'package:cosmetic_project/services/auth/localdb.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response ;
@@ -34,6 +35,10 @@ class AuthService {
       );
       Account.currentAccount.value = account;
       hasAccount.value=true;
+      //to keep the user signed in
+      DB.prefs.setString('email', email);
+      DB.prefs.setString('password', password);
+      //go to home
       Get.offAll(const MyPages());
     }catch(e){
       Get.snackbar('Failed', "Incorrect email or password");
