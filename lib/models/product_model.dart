@@ -12,7 +12,7 @@ class Product extends GetxController {
   final String ingredient;
   final String price;
   final String image_url;
-  final RxBool isFav;
+  //final RxBool isFav;
 
 
   Product({
@@ -25,8 +25,9 @@ class Product extends GetxController {
       required this.ingredient,
       required this.price,
       required this.image_url,
-  })
-      :isFav=false.obs;
+  });
+     // :isFav=false.obs;
+
 
   static List categories = <String>[
     'Makeup',
