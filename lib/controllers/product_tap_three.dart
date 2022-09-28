@@ -1,4 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
+import 'package:cosmetic_project/controllers/total_rate.dart';
 import 'package:cosmetic_project/models/cart_model.dart';
 import 'package:cosmetic_project/services/product/product_controller.dart';
 import 'package:cosmetic_project/services/product/product_repository.dart';
@@ -81,15 +82,7 @@ class _ProductTapThreeState extends State<ProductTapThree> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      for (var i = 0; i < 4; i++)
-                        const Padding(
-                          padding: EdgeInsets.only(right: 2),
-                          child:
-                              Icon(Icons.star, size: 16, color: Colors.orange),
-                        ),
-                      const Icon(Icons.star, size: 16, color: Colors.grey),
-                    ])
+                    TotalRate(product: widget.item!.product,size: 16,rating: 0,)
                   ],
                 ),
               ),

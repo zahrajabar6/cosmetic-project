@@ -21,6 +21,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
+    RxBool isPressed = false.obs;
     //dependency injection
     var productController=ProductController(ProductRepository());
     return SafeArea(
@@ -48,14 +49,22 @@ class _ProductPageState extends State<ProductPage> {
           automaticallyImplyLeading: false,
           actions: [
             TextButton(onPressed: () {
-              productController.addToFavList(widget.product);
-            },
-              child: Icon(
-                    Icons.favorite, //: Icons.favorite_border,
-                    size: 24,
-                    color: grey,
+              isPressed.value=!isPressed.value;
+              if(isPressed.value){
+                      productController.addToFavList(widget.product);
+                    }else{
+                      productController.removeFromFav(widget.product);
+                    }
+                },
+                  child: Obx((){
+                      return Icon(
+                        isPressed.value? Icons.favorite : Icons.favorite_border,
+                        size: 24,
+                        color:isPressed.value? Colors.red: grey,
+                          );
+                    }
                   )
-            )
+                )
           ],
         ),
         floatingActionButton: Padding(

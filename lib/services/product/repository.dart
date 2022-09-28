@@ -1,4 +1,5 @@
 import 'package:cosmetic_project/models/cart_model.dart';
+import 'package:cosmetic_project/models/order_details.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +35,7 @@ abstract class Repository{
   Future decreaseQuantity(Cart? cartItem);
 
   //Create order
-  Future createOrder();
+  Future<Order> createOrder();
 
   //Check out order
   Future checkOutOrder();

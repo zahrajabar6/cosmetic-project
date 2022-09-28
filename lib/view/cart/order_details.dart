@@ -1,7 +1,9 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
+import 'package:cosmetic_project/models/order_details.dart';
 import 'package:cosmetic_project/services/product/product_controller.dart';
 import 'package:cosmetic_project/services/product/product_repository.dart';
+import 'package:cosmetic_project/view/cart/order_prices.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +15,8 @@ class OrderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //dependency injection
-    var productController=ProductController(ProductRepository());
+    var orderController=ProductController(ProductRepository());
+    var checkOutController=ProductController(ProductRepository());
 
     return DraggableScrollableSheet(
         initialChildSize: 0.12,
@@ -44,99 +47,29 @@ class OrderDetails extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(children: [
-                      Expanded(
-                        child: Text(
-                          'Sub Total',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: grey.withOpacity(0.50),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        r'$0.00',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: grey.withOpacity(0.50),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(children: [
-                      Expanded(
-                        child: Text(
-                          'Discount',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: grey.withOpacity(0.50),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        r'$0.00',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: grey.withOpacity(0.50),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(children: [
-                      Expanded(
-                        child: Text(
-                          'Delivery charge',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: grey.withOpacity(0.50),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        r'$10.00',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: grey.withOpacity(0.50),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Row(children: [
-                      Expanded(
-                        child: Text(
-                          'Total Amount',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: grey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        r'$0.00',
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: green,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ]),
+                 FutureBuilder<Order?>(
+                    future: orderController.createOrder(),
+                    builder: (context,snapshot){
+                       if(snapshot.connectionState == ConnectionState.waiting){
+                        return const OrderPrices(
+                            subTotal: r'$0.00',
+                            discount: r'$0.00',
+                            total: r'$0.00'
+                        );
+                      }
+                       return OrderPrices(
+                         subTotal: '\$${snapshot.data!.subTotal}',
+                         discount: '\$${snapshot.data!.discount}',
+                         total: '\$${snapshot.data!.total}'
+                       );
+                    }
                   ),
                   MyButton(
                       isLoading: false.obs ,
                       text: 'Place Order',
                       onPress: () {
-                          //productController.createOrder();
-                          //productController.checkOutOrder();
+                          checkOutController.checkOutOrder();
                           Get.snackbar('Done!', 'Your order is coming..');
-
                       })
                 ],
               ),

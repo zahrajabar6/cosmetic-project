@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/models/cart_model.dart';
+import 'package:cosmetic_project/models/order_details.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/services/product/repository.dart';
 import 'package:dio/dio.dart';
@@ -33,7 +34,7 @@ class ProductRepository implements Repository{
           products.add(product);
       }
     } catch (e) {
-      Get.snackbar('Failed', "Check your connection");
+      //Get.snackbar('Failed', "Check your connection");
     }
     return products;
   }
@@ -119,7 +120,7 @@ class ProductRepository implements Repository{
         searchedProducts.add(product);
       }
     } catch (e) {
-      Get.snackbar('Failed', "Check your connection");
+      //catch error
     }
     return searchedProducts;
   }
@@ -154,7 +155,7 @@ class ProductRepository implements Repository{
         cart.add(cartItem);
       }
     } catch (e) {
-      Get.snackbar('Failed', "Check your connection");
+      //catch error
     }
     return cart;
   }
@@ -226,32 +227,37 @@ class ProductRepository implements Repository{
 
   //Create order
   @override
-  Future createOrder() async{
+  Future<Order> createOrder() async{
     String url = '$baseURL/Order/create_order';
-    print(url);
     try {
       Dio dio = Dio();
       dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
       Response response = await dio.post(url);
-      print(response);
+      var data = response.data;
+      Order orderDetails = Order(
+            discount: data['discounted_total'],
+            subTotal: data['sub_total'],
+            total: data["total"]);
+      return orderDetails;
     } catch (e){
-      print(e);
       //catch error
     }
+    Order order = Order(
+        discount: '0.00',
+        subTotal:'0.00',
+        total: '0.00');
+    return order;
   }
 
   //Check out order
   @override
   Future checkOutOrder() async{
     String url = '$baseURL/Order/checkout';
-    print(url);
     try {
       Dio dio = Dio();
       dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
-      Response response =await dio.post(url);
-      print(response);
+      await dio.post(url);
     } catch (e){
-      print(e);
       //catch error
     }
   }
@@ -288,11 +294,11 @@ class ProductRepository implements Repository{
       Response response = await dio.get(url);
       totalRate=response.data["rate"];
       print(totalRate);
-      Get.snackbar('Done', response.data['detail']);
+      return totalRate;
     }catch(e){
       print(e);
     }
-    return totalRate;
+    return 0;
   }
 
 

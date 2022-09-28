@@ -1,4 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cosmetic_project/models/cart_model.dart';
+import 'package:cosmetic_project/models/order_details.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/services/product/repository.dart';
 import 'package:get/get.dart';
@@ -58,7 +61,7 @@ class ProductController{
   }
 
   //create order
-  Future createOrder() async{
+  Future<Order> createOrder() async{
     return _repository.createOrder();
   }
 

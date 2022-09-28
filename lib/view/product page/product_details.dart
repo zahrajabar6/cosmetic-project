@@ -124,7 +124,7 @@ class ProductDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'ingrediant',
+                'Ingredient',
                 style: TextStyle(
                     fontSize: 18, color: grey, fontWeight: FontWeight.bold),
               ),
