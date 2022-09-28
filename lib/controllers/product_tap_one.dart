@@ -72,6 +72,7 @@ class ProductTapOne extends StatelessWidget {
                   ),
                 ),
                 TotalRate(product: product,size: 16,rating: 0,)
+
                 // FutureBuilder<double>(
                 //   future: productController.getAvgRate(product),
                 //   builder: (context,snapshot){

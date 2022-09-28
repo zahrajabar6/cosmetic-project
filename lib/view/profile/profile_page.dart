@@ -113,7 +113,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
                         prefs.setBool('showLogin', false);
                         Get.to(const MyLogin());
                         AuthService.hasAccount.value=false;
-                        Account.currentAccount.value=null;
+                        Account.currentAccount.value= Account(firstName: "firstName", lastname: "lastname", email: "email",token: '',address:'address',phone: 'phone' );
                       })
                 ],
               ): Column(mainAxisAlignment: MainAxisAlignment.center,

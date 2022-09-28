@@ -39,7 +39,6 @@ class _OnboardingState extends State<Onboarding> {
             onPress: () async {
               final prefs = await SharedPreferences.getInstance();
               prefs.setBool('showLogin', true);
-
               Get.to(const MyLogin());
             },
           )

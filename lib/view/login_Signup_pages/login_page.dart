@@ -81,10 +81,8 @@ class _MyLoginState extends State<MyLogin> {
                           text: 'Sign In',
                           onPress: () async {
                             FocusScope.of(context).unfocus();
-                            //Product.products.clear();
                             if (formKey.currentState!.validate()) {
                               AuthService.signIn(email: email, password: password);
-                              //ProductServices.productsList();
                             }
                           },
                         ),
@@ -99,10 +97,8 @@ class _MyLoginState extends State<MyLogin> {
                       MyTextButton(
                         text: "or Continue as a guest",
                         onPressed: (){
-                          //Product.products.clear();
                           FocusScope.of(context).unfocus();
                           Get.to(const MyPages());
-                          //ProductServices.productsList();
                         },
                       )
                     ]),

@@ -1,4 +1,3 @@
-import 'package:cosmetic_project/view/product%20page/rating_product.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/splashpages/logopage.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +29,7 @@ class MyApp extends StatelessWidget {
             title: 'Pure Beauty',
             home: child,
             theme: ThemeData(
+              colorSchemeSeed: Colors.green,
               fontFamily: 'Lato',
               textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
             ),
