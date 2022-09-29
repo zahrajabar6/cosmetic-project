@@ -60,7 +60,7 @@ class _MyCategoryTapState extends State<MyCategoryTap> {
                                 var product = snapshot.data?[index];
                                 if(product!.category ==e){return ProductTapOne(product: product);}else{return Container();}
                               },
-                              itemCount: snapshot.data?.length ?? 0,
+                              itemCount: (snapshot.data!=null)? 5: 0,
                             );
                           },
                         ),

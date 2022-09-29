@@ -32,8 +32,8 @@ class Product extends GetxController {
   static List categories = <String>[
     'Makeup',
     'Skin Care',
-    //'Hair Care',
-    //'Body Care'
+    'Hair Care',
+    'Body Care'
   ];
 
   static RxList<Product> filter = <Product>[].obs;

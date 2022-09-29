@@ -58,40 +58,6 @@ class _MyCategoryPageState extends State<MyCategoryPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      MyFiltering(
-                        text: 'Filter On',
-                        items: filteringList,
-                        selectedItem: firstSelectedItem,
-                        onChanged: (value) {
-                          isFiltered.value=true;
-                          Product.filter.clear();
-                          setState(() {
-                            firstSelectedItem = value;
-                          });
-                          print(firstSelectedItem);
-                          //ProductServices.filtering(filterOn: firstSelectedItem??'Default', filterBy: secondSelectedItem??'Default');
-                        },
-                      ),
-                      MyFiltering(
-                        text: 'Filter By',
-                        items: filteringItems,
-                        selectedItem: secondSelectedItem,
-                        onChanged: (value) {
-                          isFiltered.value=true;
-                          setState(() {
-                            secondSelectedItem = value;
-                          });
-                          Product.filter.clear();
-                          //ProductServices.filtering(filterOn: firstSelectedItem??'Default', filterBy: secondSelectedItem??'Default');
-                        },
-                      ),
-                    ]),
-              ),
               Expanded(
                 child: FutureBuilder<List<Product>>(
                   future: productController.fetchProductsList(),

@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             title: 'Pure Beauty',
             home: child,
             theme: ThemeData(
-              colorSchemeSeed: Colors.green,
+              primarySwatch: Colors.green,
               fontFamily: 'Lato',
               textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
             ),
