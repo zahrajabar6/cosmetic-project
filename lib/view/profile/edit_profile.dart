@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/controllers/text_form_field.dart';
+import 'package:cosmetic_project/models/account.dart';
 import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:cosmetic_project/view/profile/change_password.dart';
 import 'package:flutter/material.dart';
@@ -56,16 +57,14 @@ class _EditProfileState extends State<EditProfile> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(75),
-                        child: const SizedBox(
-                          height: 150,
-                          width: 150,
-                          child: Image(
-                              image: AssetImage('images/Profile.jpg'),
-                              fit: BoxFit.contain),
-                        ),
-                      ),
+                      child: CircleAvatar(
+                        backgroundColor: green,
+                        radius: 75,
+                        child: Text(
+                            '${Account.currentAccount.value!.firstName[0]}${Account.currentAccount.value!.lastname[0]}',
+                            style: TextStyle(color: Colors.white, fontSize: 40)
+                        ) ,
+                      )
                     ),
                     MyTextFormField(
                         obsecure: false,

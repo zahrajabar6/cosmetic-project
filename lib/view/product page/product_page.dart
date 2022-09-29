@@ -32,7 +32,7 @@ class _ProductPageState extends State<ProductPage> {
         appBar: AppBar(
           leading: TextButton(
               onPressed: () {
-                Get.to(const MyPages());
+                Get.back();
               },
               child: Icon(
                 Icons.arrow_back_ios,
