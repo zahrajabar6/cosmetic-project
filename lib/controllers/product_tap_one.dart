@@ -1,6 +1,8 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/total_rate.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/product/product_controller.dart';
+import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:cosmetic_project/view/product%20page/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,8 @@ class ProductTapOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //dependency injection
+    var productController = ProductController(ProductRepository());
 
     return SizedBox(
       height: 210,
@@ -67,17 +71,18 @@ class ProductTapOne extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                TotalRate(product: product,size: 16,rating: 3,)
-
-                // FutureBuilder<double>(
-                //   future: productController.getAvgRate(product),
-                //   builder: (context,snapshot){
-                //     if(snapshot.connectionState == ConnectionState.waiting){
-                //       return TotalRate(product: product,size: 16,rating: 0,);
-                //     }
-                //     return TotalRate(product: product,size: 16,rating: snapshot.data!,);
-                //   }
-                // )
+                //TotalRate(product: product,size: 16,rating: 3,)
+                FutureBuilder<double>(
+                  future: productController.getAvgRate(product),
+                  builder: (context,snapshot){
+                    if(snapshot.connectionState == ConnectionState.waiting){
+                      return TotalRate(product: product,size: 16,rating: 0,);
+                    }else if(snapshot.data == null){
+                      return TotalRate(product: product,size: 16,rating: 0,);
+                    }
+                    return TotalRate(product: product,size: 16,rating:snapshot.data!);
+                  }
+                )
               ]),
         ),
       ),

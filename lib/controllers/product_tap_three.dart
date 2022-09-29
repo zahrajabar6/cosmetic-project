@@ -21,6 +21,7 @@ class _ProductTapThreeState extends State<ProductTapThree> {
   Widget build(BuildContext context) {
     //dependency injection
     var productController=ProductController(ProductRepository());
+    var rateController=ProductController(ProductRepository());
     return TextButton(
       onPressed: () {
         Get.to(ProductPage(
@@ -82,7 +83,17 @@ class _ProductTapThreeState extends State<ProductTapThree> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TotalRate(product: widget.item!.product,size: 16,rating: 0,)
+                    FutureBuilder<double>(
+                        future: rateController.getAvgRate(widget.item!.product),
+                        builder: (context,snapshot){
+                          if(snapshot.connectionState == ConnectionState.waiting){
+                            return TotalRate(product: widget.item!.product,size: 16,rating: 0,);
+                          }else if(snapshot.data == null){
+                            return TotalRate(product: widget.item!.product,size: 16,rating: 0,);
+                          }
+                          return TotalRate(product: widget.item!.product,size: 16,rating:snapshot.data!);
+                        }
+                    )
                   ],
                 ),
               ),
