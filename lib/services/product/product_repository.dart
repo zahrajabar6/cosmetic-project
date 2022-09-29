@@ -301,5 +301,24 @@ class ProductRepository implements Repository{
     return 0;
   }
 
+  //is Favorite
+  Future<bool> isFavorite(Product? product) async{
+    int productID = product!.productID;
+    String url = '$baseURL/Product/is_favorites?product_id=$productID';
+    bool isFav=false;
+    try{
+      Dio dio = Dio();
+      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
+      Response response = await dio.get(url);
+      String data =response.data["is_favorite"];
+      if (data=='true'){isFav=true;}else{isFav=false;}
+      print(data);
+      return isFav;
+    }catch(e){
+      print(e);
+    }
+    return isFav;
+  }
+
 
 }

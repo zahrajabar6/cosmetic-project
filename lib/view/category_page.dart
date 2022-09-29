@@ -1,10 +1,8 @@
 import 'package:cosmetic_project/controllers/colors.dart';
-import 'package:cosmetic_project/controllers/my_filtering.dart';
 import 'package:cosmetic_project/controllers/product_tap_two.dart';
 import 'package:cosmetic_project/models/product_model.dart';
 import 'package:cosmetic_project/services/product/product_controller.dart';
 import 'package:cosmetic_project/services/product/product_repository.dart';
-//import 'package:cosmetic_project/services/data/product_api.dart';
 import 'package:cosmetic_project/view/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

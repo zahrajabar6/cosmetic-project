@@ -7,7 +7,6 @@ import 'package:cosmetic_project/services/auth/localdb.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/login_page.dart';
 import 'package:cosmetic_project/view/login_Signup_pages/signup_page.dart';
 import 'package:cosmetic_project/view/profile/edit_profile.dart';
-import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -49,10 +48,13 @@ class _MyProfilePageState extends State<MyProfilePage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: ProfilePicture(
-                      name:'${Account.currentAccount.value!.firstName} ${Account.currentAccount.value!.lastname}',
+                    child: CircleAvatar(
+                      backgroundColor: green,
                       radius: 75,
-                      fontsize: 40,
+                      child: Text(
+                        '${Account.currentAccount.value!.firstName[0]}${Account.currentAccount.value!.lastname[0]}',
+                        style: TextStyle(color: Colors.white, fontSize: 40)
+                      ) ,
                     )
                   ),
                   Padding(

@@ -1,6 +1,5 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyTextButton extends StatelessWidget {
   const MyTextButton({

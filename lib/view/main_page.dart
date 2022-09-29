@@ -7,7 +7,6 @@ import 'package:cosmetic_project/view/profile/profile_page.dart';
 import 'package:cosmetic_project/view/search/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class MyPages extends StatefulWidget {
   const MyPages({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 
-class Product extends GetxController {
+class Product {
   final int productID;
   final String product_name;
   final String brand;
@@ -12,7 +12,6 @@ class Product extends GetxController {
   final String ingredient;
   final String price;
   final String image_url;
-  //final RxBool isFav;
 
 
   Product({
@@ -26,7 +25,6 @@ class Product extends GetxController {
       required this.price,
       required this.image_url,
   });
-     // :isFav=false.obs;
 
 
   static List categories = <String>[
@@ -37,6 +35,7 @@ class Product extends GetxController {
   ];
 
   static RxList<Product> filter = <Product>[].obs;
+
 
 
 }

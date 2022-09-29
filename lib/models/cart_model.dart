@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:cosmetic_project/models/product_model.dart';
-import 'package:get/get.dart';
 
 class Cart {
   final int itemID;

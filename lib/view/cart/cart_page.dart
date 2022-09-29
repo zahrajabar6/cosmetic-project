@@ -12,13 +12,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class MyCartPage extends StatelessWidget {
+class MyCartPage extends StatefulWidget {
   const MyCartPage({Key? key}) : super(key: key);
 
   @override
+  State<MyCartPage> createState() => _MyCartPageState();
+}
+
+class _MyCartPageState extends State<MyCartPage> {
+  //dependency injections
+  var productController = ProductController(ProductRepository());
+  Future<List<Cart>>? _cartItems;
+
+  @override
+  void initState() {
+    super.initState();
+    // initial load
+    _cartItems = productController.fetchCartList();
+  }
+  void refreshList() {
+    // reload
+    setState(() {
+      _cartItems = productController.fetchCartList();
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    //dependency injections
-    var productController = ProductController(ProductRepository());
     return SafeArea(
       child: Scaffold(
           extendBody: true,
@@ -40,29 +59,33 @@ class MyCartPage extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child:AuthService.hasAccount.value? FutureBuilder<List<Cart>>(
-                  future: productController.fetchCartList(),
-                  builder: (context,snapshot){
+                child:AuthService.hasAccount.value? new FutureBuilder<List<Cart>>(
+                  future: _cartItems,
+                  builder: (BuildContext context,AsyncSnapshot<List<Cart>> snapshot){
                     if(snapshot.connectionState == ConnectionState.waiting){
                       return Center(child:CircularProgressIndicator(color: green));
-                    }
-                    if(snapshot.data!.isEmpty){
+                    } else if(snapshot.data!.isEmpty){
                       return Center(child: Text("Cart is Empty!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),));
+                    }else {
+                      final items = snapshot.data ?? <Cart>[];
+                      return new RefreshIndicator(
+                        child: ListView.builder(
+                          itemBuilder: (context,index){
+                            var item = items[index];
+                            return DismissibleWidget(
+                                onDismissed: (direction){
+                                  productController.deleteFromCart(item);
+                                  Get.snackbar('Oops!', 'Product has been deleted');
+                                },
+                                item: item,
+                                child: ProductTapThree(item: item,)
+                            );
+                          },
+                          itemCount: items.length,
+                        ),
+                        onRefresh:() async{refreshList();}
+                      );
                     }
-                    return ListView.builder(
-                      itemBuilder: (context,index){
-                        var item = snapshot.data?[index];
-                        return DismissibleWidget(
-                            onDismissed: (direction){
-                              productController.deleteFromCart(item);
-                              Get.snackbar('Oops!', 'Product has been deleted');
-                            },
-                            item: item,
-                            child: ProductTapThree(item: item,)
-                        );
-                      },
-                      itemCount: snapshot.data?.length ?? 0,
-                    );
                   },
                 ):Column(mainAxisAlignment: MainAxisAlignment.center,
                   children: [

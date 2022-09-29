@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/models/product_model.dart';
+import 'package:cosmetic_project/services/auth/localdb.dart';
 import 'package:cosmetic_project/services/product/product_controller.dart';
 import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:cosmetic_project/view/main_page.dart';
@@ -24,6 +25,7 @@ class _ProductPageState extends State<ProductPage> {
     RxBool isPressed = false.obs;
     //dependency injection
     var productController=ProductController(ProductRepository());
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -51,10 +53,10 @@ class _ProductPageState extends State<ProductPage> {
             TextButton(onPressed: () {
               isPressed.value=!isPressed.value;
               if(isPressed.value){
-                      productController.addToFavList(widget.product);
-                    }else{
-                      productController.removeFromFav(widget.product);
-                    }
+                productController.addToFavList(widget.product);
+              }else{
+                productController.removeFromFav(widget.product);
+              }
                 },
                   child: Obx((){
                       return Icon(

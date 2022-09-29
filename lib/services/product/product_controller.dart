@@ -80,4 +80,9 @@ class ProductController{
     return _repository.getAvgRate(product);
   }
 
+  //is Favorite
+  Future<bool> isFavorite(Product? product) async{
+    return _repository.isFavorite(product);
+  }
+
 }
