@@ -1,6 +1,7 @@
 import 'package:cosmetic_project/controllers/colors.dart';
 import 'package:cosmetic_project/controllers/my_button.dart';
 import 'package:cosmetic_project/models/order_details.dart';
+import 'package:cosmetic_project/services/auth/auth.dart';
 import 'package:cosmetic_project/services/product/product_controller.dart';
 import 'package:cosmetic_project/services/product/product_repository.dart';
 import 'package:cosmetic_project/view/cart/order_prices.dart';
@@ -69,7 +70,12 @@ class OrderDetails extends StatelessWidget {
                       text: 'Place Order',
                       onPress: () {
                           checkOutController.checkOutOrder();
-                          Get.snackbar('Done!', 'Your order is coming..');
+                          if(AuthService.hasAccount.value){
+                            Get.snackbar('Done!', 'Your order is coming..');
+                          }else{
+                            Get.snackbar('Failed',"You don't have account");
+                          }
+
                       })
                 ],
               ),

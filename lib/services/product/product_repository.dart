@@ -43,7 +43,7 @@ class ProductRepository implements Repository{
   @override
   Future<List<Product>> getFavList() async{
     List<Product> favList=[];
-    String url = '$baseURL/Product/list_favorite';
+    String url = '$baseURL/Favorite/list_favorite';
     try {
       Dio dio = Dio();
       dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
@@ -73,7 +73,7 @@ class ProductRepository implements Repository{
   @override
   Future postToFav(Product? product) async{
     int productID = product!.productID;
-    String url = '$baseURL/Product/add_favorite?product_id=$productID';
+    String url = '$baseURL/Favorite/add_favorite?product_id=$productID';
     try {
       Dio dio = Dio();
       dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
@@ -87,7 +87,7 @@ class ProductRepository implements Repository{
   @override
   Future delFromFav(Product? product) async{
     int productID = product!.productID;
-    String url = '$baseURL/Product/Remove_favorite?product_id=$productID';
+    String url = '$baseURL/Favorite/Remove_favorite?product_id=$productID';
     try {
       Dio dio = Dio();
       dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
@@ -157,7 +157,6 @@ class ProductRepository implements Repository{
       }
     } catch (e) {
       //catch error
-      Get.snackbar('Failed',"You don't have account");
     }
     return cart;
   }
