@@ -46,6 +46,4 @@ abstract class Repository{
   //get average rate of product
   Future<double> getAvgRate(Product? product);
 
-  //is Favorite
-  Future<bool> isFavorite(Product? product);
 }

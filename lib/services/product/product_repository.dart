@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 
 class ProductRepository implements Repository{
-  String baseURL='http://10.0.2.2:8000/api';
+  String baseURL='http://fatimasalah.pythonanywhere.com/api';
   static RxBool isAdding = false.obs;
 
   //get all products
@@ -299,25 +299,6 @@ class ProductRepository implements Repository{
       print(e);
     }
     return 0;
-  }
-
-  //is Favorite
-  Future<bool> isFavorite(Product? product) async{
-    int productID = product!.productID;
-    String url = '$baseURL/Product/is_favorites?product_id=$productID';
-    bool isFav=false;
-    try{
-      Dio dio = Dio();
-      dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
-      Response response = await dio.get(url);
-      String data =response.data["is_favorite"];
-      if (data=='true'){isFav=true;}else{isFav=false;}
-      print(data);
-      return isFav;
-    }catch(e){
-      print(e);
-    }
-    return isFav;
   }
 
 
