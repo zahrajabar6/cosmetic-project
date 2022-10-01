@@ -20,89 +20,87 @@ class _MyLoginState extends State<MyLogin> {
   String password='';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: background_color,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Form(
-            key: formKey,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 30),
-                        child: Image.asset(
-                          'images/logo.png',
-                          width: 126,
-                          height: 126,
-                        ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: background_color,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Form(
+          key: formKey,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 30),
+                      child: Image.asset(
+                        'images/logo.png',
+                        width: 126,
+                        height: 126,
                       ),
-                      const MyHeadingText(text: 'Login to your account'),
-                      MyTextFormField(
-                          obsecure: false,
-                          label: 'Email',
-                          onChanged: (x){
-                            email=x;
-                          },
-                          validator: (x) {
-                            String pattern =
-                                r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                                r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                                r"{0,253}[a-zA-Z0-9])?)*$";
-                            RegExp regex = RegExp(pattern);
-                            if (x!.isEmpty || !regex.hasMatch(x)) {
-                              return 'Enter a valid email address';
-                            } else {
-                              return null;
-                            }
-                          }),
-                      MyTextFormField(
-                          obsecure: true,
-                          label: 'Password',
-                          onChanged: (x){
-                            password=x;
-                          },
-                          validator: (x) {
-                            if (x!.length < 8 || x.isEmpty) {
-                              return 'Your password is short';
-                            } else {
-                              return null;
-                            }
-                          }),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: MyButton(
-                          isLoading: AuthService.isLogin ,
-                          text: 'Sign In',
-                          onPress: () async {
-                            FocusScope.of(context).unfocus();
-                            if (formKey.currentState!.validate()) {
-                              AuthService.signIn(email: email, password: password);
-                            }
-                          },
-                        ),
-                      ),
-                       MyTextButton(
-                        text: "Don't have account? Sign up",
-                        onPressed: (){
+                    ),
+                    const MyHeadingText(text: 'Login to your account'),
+                    MyTextFormField(
+                        obsecure: false,
+                        label: 'Email',
+                        onChanged: (x){
+                          email=x;
+                        },
+                        validator: (x) {
+                          String pattern =
+                              r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                              r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                              r"{0,253}[a-zA-Z0-9])?)*$";
+                          RegExp regex = RegExp(pattern);
+                          if (x!.isEmpty || !regex.hasMatch(x)) {
+                            return 'Enter a valid email address';
+                          } else {
+                            return null;
+                          }
+                        }),
+                    MyTextFormField(
+                        obsecure: true,
+                        label: 'Password',
+                        onChanged: (x){
+                          password=x;
+                        },
+                        validator: (x) {
+                          if (x!.length < 8 || x.isEmpty) {
+                            return 'Your password is short';
+                          } else {
+                            return null;
+                          }
+                        }),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: MyButton(
+                        isLoading: AuthService.isLogin ,
+                        text: 'Sign In',
+                        onPress: () async {
                           FocusScope.of(context).unfocus();
-                          Get.to(const RegisterPage());
+                          if (formKey.currentState!.validate()) {
+                            AuthService.signIn(email: email, password: password);
+                          }
                         },
                       ),
-                      MyTextButton(
-                        text: "or Continue as a guest",
-                        onPressed: (){
-                          FocusScope.of(context).unfocus();
-                          Get.to(const MyPages());
-                        },
-                      )
-                    ]),
-              ),
+                    ),
+                     MyTextButton(
+                      text: "Don't have account? Sign up",
+                      onPressed: (){
+                        FocusScope.of(context).unfocus();
+                        Get.to(const RegisterPage());
+                      },
+                    ),
+                    MyTextButton(
+                      text: "or Continue as a guest",
+                      onPressed: (){
+                        FocusScope.of(context).unfocus();
+                        Get.to(const MyPages());
+                      },
+                    )
+                  ]),
             ),
           ),
         ),

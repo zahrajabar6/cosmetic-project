@@ -23,120 +23,118 @@ class _EditProfileState extends State<EditProfile> {
   String address='';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        appBar: AppBar(
-          leading: TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 24,
-                color: grey,
-              )),
-          title: Text('Edit Profile',
-              style: TextStyle(
-                  color: grey, fontSize: 22, fontWeight: FontWeight.bold)),
-          centerTitle: true,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: CircleAvatar(
-                        backgroundColor: green,
-                        radius: 75,
-                        child: Text(
-                            '${Account.currentAccount.value!.firstName[0]}${Account.currentAccount.value!.lastname[0]}',
-                            style: TextStyle(color: Colors.white, fontSize: 40)
-                        ) ,
-                      )
-                    ),
-                    MyTextFormField(
-                        obsecure: false,
-                        label: 'First Name',
-                        onChanged: (x){
-                          firstName=x;
-                        },
-                        validator: (x) {
-                          if (x!.isEmpty) {
-                            return 'Enter your name';
-                          } else {
-                            return null;
-                          }
-                        }),
-                    MyTextFormField(
-                        obsecure: false,
-                        label: 'Last Name',
-                        onChanged: (x){
-                          lastName=x;
-                        },
-                        validator: (x) {
-                          if (x!.isEmpty) {
-                            return 'Enter your name';
-                          } else {
-                            return null;
-                          }
-                        }),
+    return Scaffold(
+      extendBody: true,
+      appBar: AppBar(
+        leading: TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              size: 24,
+              color: grey,
+            )),
+        title: Text('Edit Profile',
+            style: TextStyle(
+                color: grey, fontSize: 22, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: CircleAvatar(
+                      backgroundColor: green,
+                      radius: 75,
+                      child: Text(
+                          '${Account.currentAccount.value!.firstName[0]}${Account.currentAccount.value!.lastname[0]}',
+                          style: TextStyle(color: Colors.white, fontSize: 40)
+                      ) ,
+                    )
+                  ),
+                  MyTextFormField(
+                      obsecure: false,
+                      label: 'First Name',
+                      onChanged: (x){
+                        firstName=x;
+                      },
+                      validator: (x) {
+                        if (x!.isEmpty) {
+                          return 'Enter your name';
+                        } else {
+                          return null;
+                        }
+                      }),
+                  MyTextFormField(
+                      obsecure: false,
+                      label: 'Last Name',
+                      onChanged: (x){
+                        lastName=x;
+                      },
+                      validator: (x) {
+                        if (x!.isEmpty) {
+                          return 'Enter your name';
+                        } else {
+                          return null;
+                        }
+                      }),
 
-                    MyTextFormField(
-                        obsecure: false,
-                        label:'Phone Number',
-                        onChanged: (x){
-                          phoneNumber=x;
-                        },
-                        validator: (x) {
-                          if (x!.length < 11 || x.isEmpty) {
-                            return 'Invalid number';
-                          } else {
-                            return null;
-                          }
-                        }),
-                    MyTextFormField(
-                        obsecure: false,
-                        label: 'Address',
-                        onChanged: (x){
-                          address=x;
-                        },
-                        validator: (x) {
-                          if (x!.isEmpty) {
-                            return 'Enter your address';
-                          } else {
-                            return null;
-                          }
-                        }),
-                    MyButton(
-                        isLoading: false.obs,
-                       text: r'Change Password',
-                        onPress: ()  {
-                          FocusScope.of(context).unfocus();
-                          Get.to(const ChangePassword());
-                        }),
-                    MyButton(
-                        isLoading: AuthService.isUpdate ,
-                        text: 'Save',
-                        onPress: ()  async{
-                          FocusScope.of(context).unfocus();
-                          if (formKey.currentState!.validate()) {
-                            AuthService.updateProfile(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address);
-                          }
-                        })
-                  ],
-                ),
+                  MyTextFormField(
+                      obsecure: false,
+                      label:'Phone Number',
+                      onChanged: (x){
+                        phoneNumber=x;
+                      },
+                      validator: (x) {
+                        if (x!.length < 11 || x.isEmpty) {
+                          return 'Invalid number';
+                        } else {
+                          return null;
+                        }
+                      }),
+                  MyTextFormField(
+                      obsecure: false,
+                      label: 'Address',
+                      onChanged: (x){
+                        address=x;
+                      },
+                      validator: (x) {
+                        if (x!.isEmpty) {
+                          return 'Enter your address';
+                        } else {
+                          return null;
+                        }
+                      }),
+                  MyButton(
+                      isLoading: false.obs,
+                     text: r'Change Password',
+                      onPress: ()  {
+                        FocusScope.of(context).unfocus();
+                        Get.to(const ChangePassword());
+                      }),
+                  MyButton(
+                      isLoading: AuthService.isUpdate ,
+                      text: 'Save',
+                      onPress: ()  async{
+                        FocusScope.of(context).unfocus();
+                        if (formKey.currentState!.validate()) {
+                          AuthService.updateProfile(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, address: address);
+                        }
+                      })
+                ],
               ),
             ),
           ),

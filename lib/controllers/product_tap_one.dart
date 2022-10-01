@@ -19,7 +19,7 @@ class ProductTapOne extends StatelessWidget {
 
     return SizedBox(
       height: 210,
-      width: 170,
+      width: 175,
       child: TextButton(
         onPressed: () {
           Get.to(ProductPage(

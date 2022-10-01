@@ -33,24 +33,22 @@ class _MyPagesState extends State<MyPages> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        body: screens[index],
-        bottomNavigationBar: CurvedNavigationBar(
-            color: light_green,
-            backgroundColor: Colors.transparent,
-            animationCurve: Curves.easeInOut,
-            animationDuration: const Duration(milliseconds: 300),
-            height: 60,
-            index: index,
-            items: items,
-            onTap: (index) {
-              setState(() {
-                this.index = index;
-              });
-            }),
-      ),
+    return Scaffold(
+      extendBody: true,
+      body: screens[index],
+      bottomNavigationBar: CurvedNavigationBar(
+          color: light_green,
+          backgroundColor: Colors.transparent,
+          animationCurve: Curves.easeInOut,
+          animationDuration: const Duration(milliseconds: 300),
+          height: 60,
+          index: index,
+          items: items,
+          onTap: (index) {
+            setState(() {
+              this.index = index;
+            });
+          }),
     );
   }
 }

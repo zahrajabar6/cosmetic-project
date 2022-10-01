@@ -23,79 +23,64 @@ class _MySearchPageState extends State<MySearchPage> {
   RxString typed = ''.obs;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        appBar: AppBar(
-          title: Text('Search',
-              style: TextStyle(
-                  color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
-          centerTitle: true,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: MySearchField(
-                        icon: Icons.search_rounded,
-                        hint: 'Search...',
-                        myController: myController,
-                        typed: typed,
-                      ),
+    return Scaffold(
+      extendBody: true,
+      appBar: AppBar(
+        title: Text('Search',
+            style: TextStyle(
+                color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: MySearchField(
+                      icon: Icons.search_rounded,
+                      hint: 'Search...',
+                      myController: myController,
+                      typed: typed,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: Obx(() {
-                  return typed.isNotEmpty
-                      ? FutureBuilder<List<Product>>(
-                      future: productController.fetchSearchResult(typed),
-                      builder: (context,snapshot){
-                      if(snapshot.connectionState == ConnectionState.waiting){
-                        return Center(child:CircularProgressIndicator(color: green));
-                      }
-                      return ListView.builder(
-                          itemBuilder: (context,index){
-                          var product = snapshot.data?[index];
-                          return ProductTapTwo(product: product);
-                        },
-                        itemCount: snapshot.data?.length ?? 0,
-                      );
-                    },
-                  )
-                  : const Searching();
-                }),
-              )
-            ],
-          ),
+            ),
+            Expanded(
+              child: Obx(() {
+                return typed.isNotEmpty
+                    ? FutureBuilder<List<Product>>(
+                    future: productController.fetchSearchResult(typed),
+                    builder: (context,snapshot){
+                    if(snapshot.connectionState == ConnectionState.waiting){
+                      return Center(child:CircularProgressIndicator(color: green));
+                    }
+                    return ListView.builder(
+                        itemBuilder: (context,index){
+                        var product = snapshot.data?[index];
+                        return ProductTapTwo(product: product);
+                      },
+                      itemCount: snapshot.data?.length ?? 0,
+                    );
+                  },
+                )
+                : const Searching();
+              }),
+            )
+          ],
         ),
       ),
     );
   }
 }
-
-// ListView(
-// children: Product.products
-//     .where((p) =>
-// p.product_name
-//     .toLowerCase()
-// .contains(typed.toLowerCase()) ||
-// p.brand
-//     .toLowerCase()
-// .contains(typed.toLowerCase()))
-// .map((element) => ProductTapTwo(product: element))
-// .toList(),
-// )

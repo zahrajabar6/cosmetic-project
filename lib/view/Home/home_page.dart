@@ -9,32 +9,30 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        appBar: AppBar(
-          title: Text('Home',
-              style: TextStyle(
-                  color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
-          centerTitle: true,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: SliderTap(),
-              ),
-              MyCategoryTap()
-            ],
-          ),
+    return Scaffold(
+      extendBody: true,
+      appBar: AppBar(
+        title: Text('Home',
+            style: TextStyle(
+                color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: const [
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: SliderTap(),
+            ),
+            MyCategoryTap()
+          ],
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:cosmetic_project/services/auth/localdb.dart';
-import 'package:cosmetic_project/view/wrapper_screen.dart';
+import 'package:cosmetic_project/view/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

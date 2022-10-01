@@ -18,70 +18,68 @@ class MyFavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     //dependency injections
     var productController = ProductController(ProductRepository());
-    return SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        appBar: AppBar(
-          title: Text('Favorite',
-              style: TextStyle(
-                  color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
-          centerTitle: true,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
-        body: Stack(
-            fit: StackFit.expand,
-            children:[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child:AuthService.hasAccount.value? FutureBuilder<List<Product>>(
-                        future: productController.fetchFavList(),
-                        builder: (context,snapshot){
-                          if(snapshot.connectionState == ConnectionState.waiting){
-                            return Center(child:CircularProgressIndicator(color: green));
-                          }
-                          if(snapshot.data!.isEmpty){
-                            return Center(child: Text("There's no any favorite product!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),));
-                          }
-                          return ListView.builder(
-                            itemBuilder: (context,index){
-                              var product = snapshot.data?[index];
-                              return DismissibleWidget(
-                                onDismissed: (direction){
-                                  productController.removeFromFav(product);
-                                  Get.snackbar('Oops!', 'Product has been deleted');
-                                },
-                                item: product,
-                                child: ProductTapTwo(product: product)
-                              );
-                            },
-                            itemCount: snapshot.data?.length ?? 0,
-                          );
-                        },
-                      ):Column(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20),
-                            child: Text("You don't Have account?", style: TextStyle(color: grey, fontSize: 24),),
-                          ),
-                          SizedBox(width:150,
-                              child: MyButton(text: 'Register', onPress: (){Get.to(const RegisterPage());}, isLoading: false.obs))
-                        ],),
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      extendBody: true,
+      appBar: AppBar(
+        title: Text('Favorite',
+            style: TextStyle(
+                color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+      body: Stack(
+          fit: StackFit.expand,
+          children:[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child:AuthService.hasAccount.value? FutureBuilder<List<Product>>(
+                      future: productController.fetchFavList(),
+                      builder: (context,snapshot){
+                        if(snapshot.connectionState == ConnectionState.waiting){
+                          return Center(child:CircularProgressIndicator(color: green));
+                        }
+                        if(snapshot.data!.isEmpty){
+                          return Center(child: Text("There's no any favorite product!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),));
+                        }
+                        return ListView.builder(
+                          itemBuilder: (context,index){
+                            var product = snapshot.data?[index];
+                            return DismissibleWidget(
+                              onDismissed: (direction){
+                                productController.removeFromFav(product);
+                                Get.snackbar('Oops!', 'Product has been deleted');
+                              },
+                              item: product,
+                              child: ProductTapTwo(product: product)
+                            );
+                          },
+                          itemCount: snapshot.data?.length ?? 0,
+                        );
+                      },
+                    ):Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Text("You don't Have account?", style: TextStyle(color: grey, fontSize: 24),),
+                        ),
+                        SizedBox(width:150,
+                            child: MyButton(text: 'Register', onPress: (){Get.to(const RegisterPage());}, isLoading: false.obs))
+                      ],),
+                  ),
+                ],
               ),
-            ]
+            ),
+          ]
 
-        ),
       ),
     );
   }

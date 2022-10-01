@@ -38,68 +38,66 @@ class _MyCartPageState extends State<MyCartPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          extendBody: true,
-          appBar: AppBar(
-            title: Text('Cart',
-                style: TextStyle(
-                    color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
-            centerTitle: true,
-            systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-                statusBarIconBrightness: Brightness.dark),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-          ),
-          body: Stack(
-            fit: StackFit.expand,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child:AuthService.hasAccount.value? new FutureBuilder<List<Cart>>(
-                  future: _cartItems,
-                  builder: (BuildContext context,AsyncSnapshot<List<Cart>> snapshot){
-                    if(snapshot.connectionState == ConnectionState.waiting){
-                      return Center(child:CircularProgressIndicator(color: green));
-                    } else if(snapshot.data!.isEmpty){
-                      return Center(child: Text("Cart is Empty!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),));
-                    }else {
-                      final items = snapshot.data ?? <Cart>[];
-                      return new RefreshIndicator(
-                        child: ListView.builder(
-                          itemBuilder: (context,index){
-                            var item = items[index];
-                            return DismissibleWidget(
-                                onDismissed: (direction){
-                                  productController.deleteFromCart(item);
-                                  Get.snackbar('Oops!', 'Product has been deleted');
-                                },
-                                item: item,
-                                child: ProductTapThree(item: item,)
-                            );
-                          },
-                          itemCount: items.length,
-                        ),
-                        onRefresh:() async{refreshList();}
-                      );
-                    }
-                  },
-                ):Column(mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Text("You don't Have account?", style: TextStyle(color: grey, fontSize: 24),),
-                    ),
-                    SizedBox(width:150,
-                        child: MyButton(text: 'Register', onPress: (){Get.to(const RegisterPage());}, isLoading: false.obs))
-                  ],),
-              ),
-              const OrderDetails(),
-            ],
-          )),
-    );
+    return Scaffold(
+        extendBody: true,
+        appBar: AppBar(
+          title: Text('Cart',
+              style: TextStyle(
+                  color: grey, fontSize: 26, fontWeight: FontWeight.bold)),
+          centerTitle: true,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          automaticallyImplyLeading: false,
+        ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child:AuthService.hasAccount.value? new FutureBuilder<List<Cart>>(
+                future: _cartItems,
+                builder: (BuildContext context,AsyncSnapshot<List<Cart>> snapshot){
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return Center(child:CircularProgressIndicator(color: green));
+                  } else if(snapshot.data!.isEmpty){
+                    return Center(child: Text("Cart is Empty!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),));
+                  }else {
+                    final items = snapshot.data ?? <Cart>[];
+                    return new RefreshIndicator(
+                      child: ListView.builder(
+                        itemBuilder: (context,index){
+                          var item = items[index];
+                          return DismissibleWidget(
+                              onDismissed: (direction){
+                                productController.deleteFromCart(item);
+                                Get.snackbar('Oops!', 'Product has been deleted');
+                              },
+                              item: item,
+                              child: ProductTapThree(item: item,)
+                          );
+                        },
+                        itemCount: items.length,
+                      ),
+                      onRefresh:() async{refreshList();}
+                    );
+                  }
+                },
+              ):Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text("You don't Have account?", style: TextStyle(color: grey, fontSize: 24),),
+                  ),
+                  SizedBox(width:150,
+                      child: MyButton(text: 'Register', onPress: (){Get.to(const RegisterPage());}, isLoading: false.obs))
+                ],),
+            ),
+            const OrderDetails(),
+          ],
+        ));
   }
 }

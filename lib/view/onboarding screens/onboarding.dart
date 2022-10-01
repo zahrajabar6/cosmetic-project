@@ -26,41 +26,39 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: background_color,
-        body: Container(
-          padding: const EdgeInsets.only(bottom: 60),
-          child: PageView(controller: controller, children: [
-            WelcomeOne(onPress: () {
-              controller.nextPage(
-                  duration: const Duration(microseconds: 300),
-                  curve: Curves.easeInOut);
-            }),
-            WelcomeTwo(
-              onPress: () async {
-                DB.prefs = await SharedPreferences.getInstance();
-                DB.prefs.setBool('showLogin', true);
-                Get.to(const MyLogin());
-              },
-            )
-          ]),
-        ),
-        bottomSheet: Container(
-          color: background_color,
-          height: 80,
-          child: Center(
-              child: SmoothPageIndicator(
-            controller: controller,
-            count: 2,
-            effect: WormEffect(
-                spacing: 15,
-                dotColor: Colors.black26,
-                activeDotColor: green,
-                dotHeight: 10,
-                dotWidth: 10),
-          )),
-        ),
+    return Scaffold(
+      backgroundColor: background_color,
+      body: Container(
+        padding: const EdgeInsets.only(bottom: 60),
+        child: PageView(controller: controller, children: [
+          WelcomeOne(onPress: () {
+            controller.nextPage(
+                duration: const Duration(microseconds: 300),
+                curve: Curves.easeInOut);
+          }),
+          WelcomeTwo(
+            onPress: () async {
+              DB.prefs = await SharedPreferences.getInstance();
+              DB.prefs.setBool('showLogin', true);
+              Get.to(const MyLogin());
+            },
+          )
+        ]),
+      ),
+      bottomSheet: Container(
+        color: background_color,
+        height: 80,
+        child: Center(
+            child: SmoothPageIndicator(
+          controller: controller,
+          count: 2,
+          effect: WormEffect(
+              spacing: 15,
+              dotColor: Colors.black26,
+              activeDotColor: green,
+              dotHeight: 10,
+              dotWidth: 10),
+        )),
       ),
     );
   }
