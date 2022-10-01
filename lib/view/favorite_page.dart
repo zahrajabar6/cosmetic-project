@@ -48,7 +48,7 @@ class MyFavoritePage extends StatelessWidget {
                           return Center(child:CircularProgressIndicator(color: green));
                         }
                         if(snapshot.data!.isEmpty){
-                          return Center(child: Text("There's no any favorite product!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 24),));
+                          return Center(child: Text("There's no any favorite product!", style: TextStyle(color: grey.withOpacity(0.50), fontSize: 20),));
                         }
                         return ListView.builder(
                           itemBuilder: (context,index){

@@ -49,7 +49,6 @@ class _ProductPageState extends State<ProductPage> {
         automaticallyImplyLeading: false,
         actions: [
           TextButton(onPressed: () {
-
             isPressed.value=!isPressed.value;
             if(isPressed.value){
               productController.addToFavList(widget.product);

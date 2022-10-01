@@ -19,9 +19,9 @@ class OrderDetails extends StatelessWidget {
     var checkOutController=ProductController(ProductRepository());
 
     return DraggableScrollableSheet(
-        initialChildSize: 0.12,
-        minChildSize: 0.12,
-        maxChildSize: 0.5,
+        initialChildSize: 0.3,
+        minChildSize: 0.3,
+        maxChildSize: 0.6,
         builder: (context, scrollController) {
           return ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),

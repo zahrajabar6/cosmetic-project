@@ -79,7 +79,7 @@ class ProductRepository implements Repository{
       dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
       await dio.post(url);
     } catch (e) {
-      //catch error
+      Get.snackbar('Failed',"You don't have account");
     }
   }
 
@@ -94,6 +94,7 @@ class ProductRepository implements Repository{
       await dio.delete(url);
     } catch (e){
       //catch error
+      Get.snackbar('Failed',"You don't have account");
     }
   }
 
@@ -156,6 +157,7 @@ class ProductRepository implements Repository{
       }
     } catch (e) {
       //catch error
+      Get.snackbar('Failed',"You don't have account");
     }
     return cart;
   }
@@ -178,7 +180,7 @@ class ProductRepository implements Repository{
       isAdding.value=false;
       Get.snackbar('Done', response.data['detail']);
     }catch(e){
-      Get.snackbar('Failed', 'Check your connection');
+      Get.snackbar('Failed',"You don't have account");
     }
   }
 
@@ -278,7 +280,7 @@ class ProductRepository implements Repository{
       );
       Get.snackbar('Done', response.data['detail']);
     }catch(e){
-      Get.snackbar('Failed', 'Check your connection');
+      Get.snackbar('Failed',"You don't have account");
     }
   }
 
