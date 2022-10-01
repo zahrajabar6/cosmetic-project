@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 
 class ProductRepository implements Repository{
-  String baseURL='http://fatimasalah.pythonanywhere.com/api';
+  String baseURL='https://fatimasalah.pythonanywhere.com/api';
   static RxBool isAdding = false.obs;
 
   //get all products

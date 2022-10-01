@@ -18,7 +18,7 @@ class AuthService {
     isLogin.value=true;
     try{
       Response response = await Dio()
-          .post('http://fatimasalah.pythonanywhere.com/api/auth/signin',
+          .post('https://fatimasalah.pythonanywhere.com/api/auth/signin',
         data:
       jsonEncode({
         "email": email ,
@@ -52,7 +52,7 @@ class AuthService {
     isSignUp.value=true;
     try{
       Response response = await Dio()
-          .post('http://fatimasalah.pythonanywhere.com/api/auth/signup',
+          .post('https://fatimasalah.pythonanywhere.com/api/auth/signup',
         data:
         jsonEncode({
           "first_name": firstName,
@@ -91,7 +91,7 @@ class AuthService {
     dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
     try{
       Response response = await dio
-          .put('http://fatimasalah.pythonanywhere.com/api/auth/update',
+          .put('https://fatimasalah.pythonanywhere.com/api/auth/update',
         data:jsonEncode({
           "first_name": firstName,
           "last_name": lastName,
@@ -122,7 +122,7 @@ class AuthService {
     dio.options.headers["authorization"] = "Bearer ${Account.currentAccount.value!.token}";
     try{
       Response response = await dio
-          .post('http://fatimasalah.pythonanywhere.com/api/auth/change-password',
+          .post('https://fatimasalah.pythonanywhere.com/api/auth/change-password',
         data:jsonEncode({
           "old_password": oldPass,
           "new_password1": newPass,
